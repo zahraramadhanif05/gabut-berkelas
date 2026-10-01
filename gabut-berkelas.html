@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="GABUT BERKELAS — Interactive Islamic Self-Reflection & Activity Ebook oleh Zahra RF">
+<title>GABUT BERKELAS — Zahra RF</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ============ GABUT BERKELAS — premium celestial UI ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --font-body:'Poppins',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --font-serif:'Playfair Display',Georgia,serif;
+  --font-arabic:'Amiri','Scheherazade New','Traditional Arabic',serif;
+  --ease:cubic-bezier(.22,.9,.3,1);
+  --r-lg:24px;--r-md:18px;--r-sm:12px;
+}
+[data-theme="dark"]{
+  --bg0:#05070f;--bg1:#0a0f24;--bg2:#141234;--bg3:#1d1440;
+  --neb1:rgba(88,60,180,.34);--neb2:rgba(140,60,140,.22);--neb3:rgba(40,90,200,.20);
+  --text:#eceaff;--muted:#a9a4cc;--faint:#7d78a3;
+  --card:rgba(22,20,52,.55);--card2:rgba(32,28,72,.5);
+  --border:rgba(255,255,255,.10);--border2:rgba(255,255,255,.16);
+  --accent:#b79bff;--accent2:#7cc7ff;--accent3:#f0a6c8;
+  --glow:0 0 24px rgba(150,110,255,.35);
+  --btn-grad:linear-gradient(135deg,#7c5cf0,#4f8df7);
+  --shadow:0 18px 50px rgba(3,4,18,.55);
+  --shadow-sm:0 8px 26px rgba(3,4,18,.4);
+  --sky:radial-gradient(120% 90% at 50% -10%,#1c1748 0%,#0d1030 42%,#05070f 100%);
+}
+[data-theme="light"]{
+  --bg0:#fdfcff;--bg1:#eef2ff;--bg2:#f7ecff;--bg3:#ffeef4;
+  --neb1:rgba(150,170,255,.35);--neb2:rgba(255,180,215,.30);--neb3:rgba(255,214,190,.28);
+  --text:#2b2942;--muted:#5f5b80;--faint:#8b87ab;
+  --card:rgba(255,255,255,.62);--card2:rgba(255,255,255,.75);
+  --border:rgba(90,80,160,.14);--border2:rgba(90,80,160,.22);
+  --accent:#6a54d8;--accent2:#3b7fd4;--accent3:#c65b8f;
+  --glow:0 0 24px rgba(120,100,230,.22);
+  --btn-grad:linear-gradient(135deg,#7c5cf0,#4f8df7);
+  --shadow:0 18px 50px rgba(90,80,160,.16);
+  --shadow-sm:0 8px 26px rgba(90,80,160,.12);
+  --sky:linear-gradient(160deg,#dceaff 0%,#e9e4ff 30%,#ffe9f3 62%,#ffeede 82%,#ffffff 100%);
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);color:var(--text);background:var(--bg0);
+  min-height:100dvh;line-height:1.7;font-size:16px;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  transition:color .5s,background .5s;
+}
+::selection{background:var(--accent);color:#fff}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea{font-family:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+
+/* ---------- background layers ---------- */
+#sky{position:fixed;inset:0;z-index:-3;background:var(--sky);transition:background .8s}
+.nebula{position:fixed;border-radius:50%;filter:blur(90px);z-index:-2;opacity:.9;pointer-events:none;transition:opacity .8s}
+#neb1{width:60vmax;height:60vmax;top:-18vmax;left:-14vmax;background:var(--neb1);animation:drift 26s var(--ease) infinite alternate}
+#neb2{width:52vmax;height:52vmax;bottom:-20vmax;right:-14vmax;background:var(--neb2);animation:drift 32s var(--ease) infinite alternate-reverse}
+#neb3{width:38vmax;height:38vmax;top:38%;left:52%;background:var(--neb3);animation:drift 38s var(--ease) infinite alternate}
+@keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(4vmax,-3vmax,0) scale(1.08)}}
+#stars{position:fixed;inset:0;z-index:-1;pointer-events:none;overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;opacity:.7;animation:twinkle var(--tw,4s) ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.15}50%{opacity:.85}}
+.shoot{position:absolute;width:120px;height:1.5px;border-radius:2px;
+  background:linear-gradient(90deg,#fff,transparent);opacity:0;transform:rotate(-32deg)}
+.shoot.go{animation:shoot 1.1s ease-out forwards}
+@keyframes shoot{0%{opacity:0;transform:rotate(-32deg) translateX(0)}12%{opacity:.9}100%{opacity:0;transform:rotate(-32deg) translateX(-46vw)}}
+[data-theme="light"] .star,[data-theme="light"] .shoot{display:none}
+.cloud{position:fixed;border-radius:50%;filter:blur(60px);z-index:-1;pointer-events:none;display:none}
+[data-theme="light"] .cloud{display:block}
+#cl1{width:44vmax;height:16vmax;top:12%;left:-8%;background:rgba(255,255,255,.75);animation:drift 30s var(--ease) infinite alternate}
+#cl2{width:38vmax;height:14vmax;top:56%;right:-10%;background:rgba(255,255,255,.6);animation:drift 36s var(--ease) infinite alternate-reverse}
+
+/* ---------- top bar ---------- */
+#topbar{position:fixed;top:0;left:0;right:0;z-index:50;display:none;
+  align-items:center;justify-content:space-between;
+  padding:calc(env(safe-area-inset-top,0px) + 10px) clamp(14px,4vw,24px) 10px;
+  background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border)}
+body.entered #topbar{display:flex}
+.brand{font-family:var(--font-serif);font-weight:700;letter-spacing:.14em;font-size:.92rem}
+.brand em{font-style:normal;background:linear-gradient(120deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+#themeBtn{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;font-size:1.1rem;
+  background:var(--card2);border:1px solid var(--border2);transition:transform .3s var(--ease),box-shadow .3s}
+#themeBtn:hover{transform:rotate(24deg) scale(1.06);box-shadow:var(--glow)}
+
+/* ---------- layout & screens ---------- */
+#app{max-width:760px;margin:0 auto;padding:calc(env(safe-area-inset-top,0px) + 78px) clamp(16px,4.5vw,28px) 120px}
+.screen{display:none}
+.screen.on{display:block;animation:fadeUp .55s var(--ease) both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+.kicker{font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+h1.serif,h2.serif,.serif{font-family:var(--font-serif)}
+h1{font-size:clamp(2rem,7vw,3.2rem);line-height:1.15;font-weight:700}
+h2{font-size:clamp(1.45rem,5.4vw,2.1rem);line-height:1.25;font-weight:700;margin-bottom:14px}
+h3{font-size:1.05rem;font-weight:600;margin-bottom:8px}
+p{margin-bottom:14px;color:var(--text)}
+.lead{color:var(--muted);font-size:clamp(.95rem,3.6vw,1.05rem)}
+.muted{color:var(--muted)} .faint{color:var(--faint)} .small{font-size:.82rem}
+.center{text-align:center}
+.micro{font-size:.8rem;color:var(--faint);font-style:italic}
+.hr{height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:26px 0;border:none}
+
+/* ---------- glass & cards ---------- */
+.glass{background:var(--card);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border:1px solid var(--border);border-radius:var(--r-lg);box-shadow:var(--shadow-sm)}
+.card{padding:clamp(18px,4.5vw,26px);border-radius:var(--r-lg);margin-bottom:16px}
+.card.hoverable{transition:transform .35s var(--ease),box-shadow .35s,border-color .35s}
+.card.hoverable:hover{transform:translateY(-4px);box-shadow:var(--shadow),var(--glow);border-color:var(--border2)}
+.grid{display:grid;gap:12px}
+.grid.c2{grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr))}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:14px 30px;border-radius:999px;font-weight:600;font-size:.95rem;letter-spacing:.06em;
+  color:#fff;background:var(--btn-grad);box-shadow:0 10px 30px rgba(110,85,240,.35);
+  transition:transform .25s var(--ease),box-shadow .3s;min-height:48px;text-decoration:none}
+.btn:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 14px 38px rgba(110,85,240,.5)}
+.btn:active{transform:scale(.95)}
+.btn.ghost{background:var(--card2);color:var(--text);border:1px solid var(--border2);box-shadow:none}
+.btn.ghost:hover{box-shadow:var(--glow)}
+.btn.soft{background:transparent;color:var(--accent);border:1px solid var(--border2);box-shadow:none}
+.btn.sm{padding:9px 18px;min-height:40px;font-size:.83rem}
+.btn.block{width:100%}
+.chip{display:inline-flex;align-items:center;gap:7px;padding:10px 16px;border-radius:999px;
+  background:var(--card2);border:1px solid var(--border);font-size:.87rem;font-weight:500;
+  transition:transform .25s var(--ease),border-color .25s,box-shadow .25s;min-height:44px}
+.chip:hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:var(--glow)}
+.chip.sel{border-color:var(--accent);background:linear-gradient(135deg,rgba(124,92,240,.25),rgba(79,141,247,.2))}
+.chiprow{display:flex;flex-wrap:wrap;gap:9px}
+</style>
+<style>
+/* ---------- part 2: components ---------- */
+.moodcard{display:flex;flex-direction:column;align-items:flex-start;gap:10px;text-align:left;
+  padding:20px;border-radius:var(--r-md);min-height:110px;width:100%;
+  background:var(--card);border:1px solid var(--border);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  transition:transform .3s var(--ease),box-shadow .3s,border-color .3s;animation:floaty 7s ease-in-out infinite}
+.moodcard:nth-child(2n){animation-delay:-2.4s}.moodcard:nth-child(3n){animation-delay:-4.6s}
+.moodcard:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:var(--shadow-sm),var(--glow)}
+.moodcard .em{font-size:1.5rem;line-height:1}
+.moodcard .lb{font-weight:600;font-size:.9rem;letter-spacing:.05em}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+/* progress */
+.prog-wrap{margin-top:8px}
+.prog-line{height:8px;border-radius:99px;background:var(--card2);border:1px solid var(--border);overflow:hidden}
+.prog-fill{height:100%;width:0%;border-radius:99px;background:var(--btn-grad);transition:width 1s var(--ease);box-shadow:0 0 12px rgba(124,92,240,.6)}
+.ringbox{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.ring{position:relative;width:130px;height:130px;flex:none}
+.ring svg{transform:rotate(-90deg)}
+.ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-family:var(--font-serif);font-size:1.5rem;font-weight:700}
+.statusrow{display:flex;align-items:center;gap:10px;padding:11px 14px;border-radius:var(--r-sm);
+  background:var(--card2);border:1px solid var(--border);font-size:.88rem;margin-bottom:8px;cursor:pointer;transition:border-color .25s;text-align:left;width:100%}
+.statusrow:hover{border-color:var(--accent)}
+.dot{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-size:.7rem;border:1.5px solid var(--faint);color:var(--faint)}
+.dot.part{border-color:var(--accent2);color:var(--accent2)}
+.dot.done{border-color:var(--accent);background:var(--accent);color:#fff}
+
+/* orb (cover) */
+.orbstage{position:relative;height:230px;display:grid;place-items:center;margin:10px 0 6px}
+.orb{width:150px;height:150px;border-radius:50%;position:relative;
+  background:radial-gradient(circle at 32% 28%,rgba(255,255,255,.9),rgba(183,155,255,.55) 34%,rgba(80,60,180,.35) 62%,rgba(20,16,60,.15) 100%);
+  box-shadow:0 0 60px rgba(150,110,255,.55),inset 0 0 40px rgba(255,255,255,.25),inset -18px -22px 46px rgba(40,20,110,.45);
+  animation:orbfloat 7s ease-in-out infinite;backdrop-filter:blur(2px)}
+.orb::after{content:"";position:absolute;inset:-26px;border-radius:50%;
+  border:1px solid rgba(255,255,255,.18);transform:rotateX(72deg);animation:ringspin 12s linear infinite}
+.orbring{position:absolute;inset:0;pointer-events:none}
+@keyframes orbfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes ringspin{to{transform:rotateX(72deg) rotateZ(360deg)}}
+[data-theme="light"] .orb{background:radial-gradient(circle at 32% 28%,#fff,rgba(200,190,255,.8) 36%,rgba(150,170,255,.45) 66%,rgba(255,220,235,.3));
+  box-shadow:0 0 60px rgba(140,120,240,.4),inset 0 0 40px rgba(255,255,255,.7)}
+
+/* quote / dalil */
+.quote{border-left:3px solid var(--accent);padding:16px 18px;border-radius:0 var(--r-md) var(--r-md) 0;
+  background:var(--card2);margin:16px 0}
+.quote .src{font-size:.78rem;color:var(--faint);margin-top:10px;display:block}
+.ar{font-family:var(--font-arabic);direction:rtl;text-align:right;font-size:clamp(1.5rem,6vw,2rem);
+  line-height:2.2;color:var(--text);word-spacing:.12em;display:block;margin:6px 0 12px}
+.ayahnum{font-family:var(--font-body);font-size:.72rem;letter-spacing:.2em;color:var(--faint);direction:ltr;text-align:left;display:block;margin-bottom:8px}
+
+/* chat */
+.chatlog{display:flex;flex-direction:column;gap:14px;padding:6px 0 4px}
+.bubble{max-width:88%;padding:13px 17px;border-radius:20px;font-size:.92rem;line-height:1.65;animation:fadeUp .4s var(--ease) both;white-space:pre-line}
+.bubble.me{align-self:flex-end;background:var(--btn-grad);color:#fff;border-bottom-right-radius:6px}
+.bubble.bot{align-self:flex-start;background:var(--card2);border:1px solid var(--border);border-bottom-left-radius:6px}
+.bubble .lyr{display:block;font-size:.66rem;letter-spacing:.24em;color:var(--accent);margin:10px 0 3px;font-weight:600}
+.bubble .lyr:first-child{margin-top:0}
+.typing{align-self:flex-start;display:inline-flex;gap:5px;padding:12px 16px;background:var(--card2);border:1px solid var(--border);border-radius:20px;border-bottom-left-radius:6px}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:tp 1s infinite}
+.typing i:nth-child(2){animation-delay:.18s}.typing i:nth-child(3){animation-delay:.36s}
+@keyframes tp{0%,100%{opacity:.3;transform:translateY(0)}50%{opacity:1;transform:translateY(-4px)}}
+
+/* checklist */
+.checks{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,96px),1fr));gap:10px;margin:14px 0}
+.chk{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 8px;border-radius:var(--r-sm);
+  background:var(--card2);border:1px solid var(--border);font-weight:600;font-size:.9rem;
+  transition:all .3s var(--ease);min-height:64px}
+.chk small{font-size:.68rem;font-weight:400;color:var(--faint)}
+.chk.done{background:linear-gradient(135deg,rgba(124,92,240,.35),rgba(79,141,247,.28));border-color:var(--accent);color:var(--text)}
+.chk.done small{color:var(--accent2)}
+.chk:hover:not(.done){border-color:var(--accent2);transform:translateY(-2px)}
+
+/* flip cards */
+.cards10{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,140px),1fr));gap:12px}
+.flip{perspective:900px;height:190px;cursor:pointer;background:none;border:none;text-align:inherit;padding:0}
+.flip-inner{position:relative;width:100%;height:100%;transition:transform .8s var(--ease);transform-style:preserve-3d}
+.flip.open .flip-inner{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;border-radius:var(--r-md);backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;padding:14px;border:1px solid var(--border)}
+.face.front{background:linear-gradient(150deg,var(--card2),var(--card));font-family:var(--font-serif);font-size:1.5rem;color:var(--accent)}
+.face.front small{font-family:var(--font-body);font-size:.68rem;letter-spacing:.24em;color:var(--faint)}
+.face.back{background:linear-gradient(150deg,rgba(124,92,240,.3),rgba(79,141,247,.22));transform:rotateY(180deg);
+  font-size:.8rem;line-height:1.55;text-align:center;color:var(--text)}
+.face.back b{font-size:.82rem}
+
+/* wheel */
+.wheelbox{display:grid;place-items:center;margin:8px auto 4px;max-width:340px;position:relative}
+.wheelptr{width:0;height:0;border-left:13px solid transparent;border-right:13px solid transparent;
+  border-top:20px solid var(--accent);margin:0 auto -6px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35));z-index:2;position:relative}
+#wheelSvg{width:100%;height:auto;display:block;filter:drop-shadow(0 14px 30px rgba(3,4,18,.45))}
+#wheelG{transition:transform 4.4s cubic-bezier(.12,.72,.08,1);transform-origin:150px 150px}
+.wheelresult{min-height:56px;text-align:center;font-weight:600;margin-top:12px;font-size:1.02rem}
+
+/* journal */
+.jlabel{display:block;font-weight:600;font-size:.92rem;margin:0 0 8px}
+textarea.jta{width:100%;min-height:96px;resize:vertical;border-radius:var(--r-md);padding:14px 16px;
+  background:var(--card2);border:1px solid var(--border);font-size:.92rem;line-height:1.65;
+  transition:border-color .3s,box-shadow .3s}
+textarea.jta:focus{outline:none;border-color:var(--accent);box-shadow:var(--glow)}
+.savehint{font-size:.72rem;color:var(--faint);text-align:right;margin-top:4px;min-height:1em}
+
+/* constellation */
+.constel{position:relative;border-radius:var(--r-lg);overflow:hidden;
+  background:radial-gradient(120% 120% at 50% 0%,#101736 0%,#070a1c 70%);border:1px solid var(--border)}
+.constel svg{display:block;width:100%;height:auto}
+.cstar{fill:#fff;filter:drop-shadow(0 0 5px rgba(180,160,255,.9))}
+
+/* modal */
+.modalback{position:fixed;inset:0;z-index:90;background:rgba(5,6,18,.6);backdrop-filter:blur(8px);
+  display:none;align-items:center;justify-content:center;padding:20px}
+.modalback.show{display:flex;animation:fadeUp .3s var(--ease)}
+.modal{max-width:420px;width:100%;max-height:85dvh;overflow-y:auto;padding:26px;border-radius:var(--r-lg)}
+.modalrow{display:flex;gap:10px;justify-content:flex-end;margin-top:18px;flex-wrap:wrap}
+
+/* bottom nav */
+#bottomnav{position:fixed;bottom:0;left:0;right:0;z-index:50;display:none;
+  background:var(--card);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-top:1px solid var(--border);padding:8px 6px calc(env(safe-area-inset-bottom,0px) + 8px)}
+body.entered #bottomnav{display:block}
+.navin{max-width:560px;margin:0 auto;display:flex;justify-content:space-around}
+.navbtn{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:.64rem;letter-spacing:.04em;
+  color:var(--faint);padding:7px 10px;border-radius:14px;min-width:58px;min-height:48px;transition:color .25s,background .25s}
+.navbtn span{font-size:1.15rem;line-height:1}
+.navbtn.act{color:var(--accent);background:linear-gradient(135deg,rgba(124,92,240,.22),rgba(79,141,247,.15))}
+
+/* util */
+.mission{font-size:1.15rem;font-weight:600;font-family:var(--font-serif);line-height:1.5}
+.badge{display:inline-block;font-size:.68rem;letter-spacing:.2em;color:var(--accent2);border:1px solid var(--border2);
+  border-radius:99px;padding:4px 12px;margin-bottom:10px}
+.doa-opt{display:block;width:100%;text-align:left;padding:14px 18px;margin-bottom:9px;border-radius:var(--r-md);
+  background:var(--card2);border:1px solid var(--border);font-size:.9rem;font-weight:500;transition:all .3s var(--ease)}
+.doa-opt:hover{border-color:var(--accent);transform:translateX(4px)}
+footer.pagef{margin:34px 0 10px;text-align:center}
+.toast{position:fixed;left:50%;bottom:110px;transform:translateX(-50%) translateY(20px);z-index:99;
+  background:var(--card2);border:1px solid var(--accent);color:var(--text);padding:11px 22px;border-radius:99px;
+  font-size:.84rem;opacity:0;pointer-events:none;transition:all .4s var(--ease);box-shadow:var(--glow)}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media (max-width:380px){.checks{grid-template-columns:repeat(3,1fr)}.cards10{grid-template-columns:repeat(2,1fr)}}
+@media (min-width:768px){#app{padding-bottom:140px}.bubble{max-width:76%}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}
+  html{scroll-behavior:auto}
+  .nebula,.orb,#stars{display:none}
+}
+</style>
+</head>
+<body>
+<div id="sky" aria-hidden="true"></div>
+<div class="nebula" id="neb1" aria-hidden="true"></div>
+<div class="nebula" id="neb2" aria-hidden="true"></div>
+<div class="nebula" id="neb3" aria-hidden="true"></div>
+<div id="stars" aria-hidden="true"></div>
+<div class="cloud" id="cl1" aria-hidden="true"></div>
+<div class="cloud" id="cl2" aria-hidden="true"></div>
+
+<header id="topbar">
+  <div class="brand">GABUT <em>BERKELAS</em></div>
+  <button id="themeBtn" aria-label="Ganti mode terang atau gelap" title="Mode terang / gelap">☾</button>
+</header>
+
+<main id="app">
+
+<!-- ============ COVER ============ -->
+<section class="screen on" id="scr-cover" data-title="Sampul">
+  <div class="center" style="padding-top:clamp(10px,6vh,50px)">
+    <p class="kicker">Interactive Islamic Self-Reflection &amp; Activity Ebook</p>
+    <div class="orbstage" aria-hidden="true">
+      <div class="orb"><div class="orbring"></div></div>
+    </div>
+    <h1 class="serif" style="letter-spacing:.06em">GABUT<br><span style="background:linear-gradient(120deg,var(--accent),var(--accent2),var(--accent3));-webkit-background-clip:text;background-clip:text;color:transparent">BERKELAS</span></h1>
+    <p class="lead" style="max-width:420px;margin:16px auto 6px">Tempatmu mengisi waktu luang tanpa membiarkannya berlalu sia-sia.</p>
+    <p class="micro" style="margin-top:18px">by <strong style="color:var(--muted)">Zahra RF</strong><br>Dibuat: 30 September 2026</p>
+    <div style="margin-top:34px"><button class="btn" id="btnMasuk">MASUK</button></div>
+    <p class="micro" style="margin-top:26px">Gabut boleh. Sia-sia jangan.</p>
+  </div>
+</section>
+
+<!-- ============ KATA PEMBUKA ============ -->
+<section class="screen" id="scr-pembuka" data-title="Kata Pembuka">
+  <div class="card glass">
+    <p class="kicker">Kata Pembuka</p>
+    <h2 class="serif">Assalamualaikum warahmatullahi wa barokaatuh.</h2>
+    <p>Selamat datang di <strong>GABUT BERKELAS</strong>. 🤍</p>
+    <p class="muted">Kalau kamu membuka ini karena sedang gabut, nggak tahu mau ngapain, atau cuma ingin menghabiskan beberapa menit tanpa terus-terusan scrolling... kamu berada di tempat yang tepat.</p>
+    <p class="muted">Kita nggak akan memaksa kamu menjadi produktif setiap saat.<br>Kita juga nggak akan menyuruhmu pura-pura baik-baik saja.</p>
+    <p>Di sini, kamu boleh berhenti sebentar.</p>
+    <p class="muted">Boleh memilih aktivitas yang ringan. Boleh membaca satu ayat. Boleh bermain. Boleh menulis isi kepala. Boleh berdzikir. Boleh melakukan satu kebaikan kecil.</p>
+    <p class="muted">Karena waktu luang nggak selalu harus dipenuhi dengan sesuatu yang besar. Kadang, beberapa menit yang sederhana justru bisa menjadi lebih berarti ketika kita mengisinya dengan sesuatu yang baik.</p>
+    <p>Jadi... kalau kamu siap, kita mulai pelan-pelan.</p>
+    <div class="center" style="margin-top:22px"><button class="btn" id="btnSiap">AKU SIAP</button></div>
+  </div>
+</section>
+
+<!-- ============ PROLOG ============ -->
+<section class="screen" id="scr-prolog" data-title="Sebelum Kamu Mulai">
+  <div class="card glass">
+    <p class="kicker">Prolog</p>
+    <h2 class="serif">Sebelum kamu mulai...</h2>
+    <p class="lead">Jangan buru-buru.</p>
+    <p class="muted">Ebook ini bukan perlombaan. Kamu nggak perlu menyelesaikan semuanya dalam satu kali duduk. Pilih saja apa yang paling kamu butuhkan hari ini.</p>
+    <p class="muted">Kalau ingin main, mainlah. Kalau ingin membaca, bacalah. Kalau ingin menulis, tulislah. Kalau ingin berdzikir, berdzikirlah.</p>
+    <p>Dan kalau setelah semua itu kamu masih merasa kosong... kamu tetap nggak gagal.</p>
+    <p class="muted">Kita hanya sedang belajar menggunakan waktu dengan sedikit lebih sadar.</p>
+    <hr class="hr">
+    <p class="small" style="color:var(--faint)"><strong>Catatan penting:</strong> Ebook ini adalah media refleksi dan aktivitas ringan. Ebook ini bukan pengganti diagnosis, terapi, atau pertolongan profesional.</p>
+    <div class="center" style="margin-top:20px"><button class="btn" id="btnPrologNext">LANJUT</button></div>
+  </div>
+</section>
+
+<!-- ============ HOME ============ -->
+<section class="screen" id="scr-home" data-title="Beranda">
+  <div class="center" style="margin-bottom:20px">
+    <p class="kicker">Beranda</p>
+    <h2 class="serif">Kamu datang ke sini karena apa?</h2>
+    <p class="micro">Pilih satu dulu. Kamu nggak harus melakukan semuanya.</p>
+  </div>
+  <div class="grid c2" id="moodgrid">
+    <button class="moodcard" data-goto="scr-cekrasa"><span class="em">😐</span><span class="lb">AKU KOSONG</span></button>
+    <button class="moodcard" data-goto="scr-gabut"><span class="em">😴</span><span class="lb">AKU GABUT</span></button>
+    <button class="moodcard" data-goto="scr-bilang"><span class="em">😞</span><span class="lb">AKU SEDIH</span></button>
+    <button class="moodcard" data-goto="scr-bilang" data-chip="marah"><span class="em">😤</span><span class="lb">AKU KESAL</span></button>
+    <button class="moodcard" data-goto="scr-bilang" data-chip="mikir"><span class="em">😵‍💫</span><span class="lb">KEPALAKU PENUH</span></button>
+    <button class="moodcard" data-goto="scr-bilang"><span class="em">💬</span><span class="lb">AKU CUMA INGIN BICARA</span></button>
+    <button class="moodcard" data-goto="scr-main"><span class="em">🎮</span><span class="lb">AKU INGIN MAIN</span></button>
+    <button class="moodcard" data-goto="scr-dekat"><span class="em">🕌</span><span class="lb">AKU INGIN MENDEKAT KEPADA ALLAH</span></button>
+  </div>
+  <div class="card glass" style="margin-top:18px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
+      <h3 class="serif" style="margin:0">Perjalananmu</h3>
+      <span class="small muted"><span id="homePct">0</span>%</span>
+    </div>
+    <div class="prog-wrap"><div class="prog-line"><div class="prog-fill" id="homeFill"></div></div></div>
+    <p class="small faint" style="margin:10px 0 0"><span id="homeCount">0 / 18</span> bagian selesai</p>
+  </div>
+  <p class="micro center">Beberapa menit pun berarti.</p>
+</section>
+<!-- ============ BAB 1 CEK RASA ============ -->
+<section class="screen sec" id="scr-cekrasa" data-title="Cek Rasa">
+  <p class="kicker">Bab 1 · Cek Rasa</p>
+  <h2 class="serif">Sekarang kamu lagi merasa apa?</h2>
+  <p class="muted small">Yang kamu rasakan hari ini boleh berbeda dari kemarin.</p>
+  <div class="chiprow" id="feelingChips" style="margin:18px 0">
+    <button class="chip" data-f="baik">😄 Lagi baik</button>
+    <button class="chip" data-f="datar">😐 Datar</button>
+    <button class="chip" data-f="gabut">😴 Gabut</button>
+    <button class="chip" data-f="sedih">😞 Sedih</button>
+    <button class="chip" data-f="marah">😤 Marah</button>
+    <button class="chip" data-f="cemas">😰 Cemas</button>
+    <button class="chip" data-f="teman">🥺 Ingin ditemani</button>
+    <button class="chip" data-f="mikir">😵‍💫 Overthinking</button>
+    <button class="chip" data-f="hampa">🫥 Nggak ngerasa apa-apa</button>
+  </div>
+  <div id="feelingOut"></div>
+</section>
+
+<!-- ============ BAB 2 KENAPA ============ -->
+<section class="screen sec" id="scr-kenapa" data-title="Kenapa Aku Merasa Begini?">
+  <p class="kicker">Bab 2</p>
+  <h2 class="serif">Kenapa aku merasa begini?</h2>
+  <p class="muted">Nggak ada satu jawaban yang pasti. Tapi ada beberapa kemungkinan umum yang sering terjadi. Baca pelan-pelan — kalau ada yang terasa "oh, iya ya", itu bisa jadi titik mulai.</p>
+  <div class="card glass hoverable"><h3>🔄 Monoton</h3><p class="muted small">Bisa jadi harimu terasa sama terus: bangun, scroll, tidur, ulangi. Otak yang jarang mendapat variasi kadang membaca itu sebagai kekosongan.</p></div>
+  <div class="card glass hoverable"><h3>📱 Terlalu lama scrolling</h3><p class="muted small">Kadang kita merasa "istirahat" padahal otak terus dipaksa memproses informasi. Pada sebagian orang, ini justru membuat lelah dan datar.</p></div>
+  <div class="card glass hoverable"><h3>🌙 Kurang tidur &amp; kelelahan</h3><p class="muted small">Bisa jadi yang kamu butuhkan bukan motivasi, tapi tidur. Tubuh yang lelah sering terasa seperti hati yang lelah.</p></div>
+  <div class="card glass hoverable"><h3>🧠 Terlalu banyak pikiran</h3><p class="muted small">Kadang kepala yang penuh membuat semua hal terasa berat, termasuk hal-hal kecil yang biasanya ringan.</p></div>
+  <div class="card glass hoverable"><h3>📅 Kehilangan rutinitas</h3><p class="muted small">Pada sebagian orang, hari tanpa struktur terasa bebas di awal, tapi kosong di akhir.</p></div>
+  <div class="card glass hoverable"><h3>🌱 Kurang aktivitas bermakna</h3><p class="muted small">Bisa jadi bukan kamu yang malas — mungkin harimu hanya belum diisi sesuatu yang terasa berarti untukmu.</p></div>
+  <div class="card glass hoverable"><h3>🚪 Sedang mengalami perubahan hidup</h3><p class="muted small">Pindah, lulus, kehilangan, hubungan yang berubah... perubahan besar sering diam-diam menguras energi.</p></div>
+  <div class="card glass hoverable"><h3>🍚 Kebutuhan dasar yang terabaikan</h3><p class="muted small">Belum makan, jarang minum, jarang kena cahaya matahari — hal kecil yang efeknya nggak kecil.</p></div>
+  <div class="card glass hoverable"><h3>🪑 Terlalu lama sendirian</h3><p class="muted small">Manusia butuh koneksi. Kadang rasa sepi bukan karena nggak ada orang, tapi karena nggak ada yang benar-benar terhubung.</p></div>
+  <div class="card glass hoverable"><h3>👀 Tekanan sosial</h3><p class="muted small">Melihat hidup orang lain terus-menerus bisa membuat hidup sendiri terasa kurang — padahal yang kamu lihat hanya potongan kecilnya.</p></div>
+  <p class="micro">Ini bukan diagnosis. Perasaan bisa punya banyak penyebab, dan ebook ini tidak bisa menentukannya untukmu.</p>
+</section>
+
+<!-- ============ BAB 3 BILANG AJA ============ -->
+<section class="screen sec" id="scr-bilang" data-title="Bilang Aja">
+  <p class="kicker">Bab 3 · Bilang Aja</p>
+  <h2 class="serif">Bilang aja.</h2>
+  <p class="muted small">Kamu nggak perlu merangkai kata sendiri. Pilih yang paling dekat dengan isi kepalamu.</p>
+  <div class="chiprow" id="chatChips" style="margin:16px 0 20px">
+    <button class="chip" data-c="sedih">Aku lagi sedih banget.</button>
+    <button class="chip" data-c="kosong">Aku nggak tahu kenapa, tapi rasanya kosong.</button>
+    <button class="chip" data-c="gabut">Aku cuma gabut dan nggak tahu mau ngapain.</button>
+    <button class="chip" data-c="capek">Aku capek, tapi nggak tahu capek karena apa.</button>
+    <button class="chip" data-c="nangis">Aku pengin nangis.</button>
+    <button class="chip" data-c="marah">Aku lagi marah banget.</button>
+    <button class="chip" data-c="mikir">Aku terlalu banyak mikir.</button>
+    <button class="chip" data-c="sendiri">Aku ngerasa sendirian.</button>
+    <button class="chip" data-c="males">Aku nggak pengin melakukan apa-apa.</button>
+    <button class="chip" data-c="baik">Aku sebenarnya baik-baik aja, cuma hampa.</button>
+  </div>
+  <div class="chatlog" id="chatlog" aria-live="polite"></div>
+</section>
+
+<!-- ============ BAB 4 ISI PELAN-PELAN ============ -->
+<section class="screen sec" id="scr-durasi" data-title="Isi Pelan-pelan">
+  <p class="kicker">Bab 4 · Isi Pelan-pelan</p>
+  <h2 class="serif">Punya berapa menit hari ini?</h2>
+  <p class="muted small">Pilih durasi yang realistis. Sedikit pun nggak apa-apa.</p>
+  <div class="chiprow" id="durChips" style="margin:16px 0">
+    <button class="chip" data-d="1">⏱ 1 MENIT</button>
+    <button class="chip" data-d="3">⏱ 3 MENIT</button>
+    <button class="chip" data-d="5">⏱ 5 MENIT</button>
+    <button class="chip" data-d="10">⏱ 10 MENIT</button>
+  </div>
+  <div id="durList"></div>
+  <div class="center" style="margin-top:18px"><button class="btn ghost" id="btnDurRandom">🎲 PILIHKAN UNTUKKU</button></div>
+  <div id="durPick" class="center" style="margin-top:16px"></div>
+</section>
+
+<!-- ============ BAB 5 ISTIGHFAR ============ -->
+<section class="screen sec" id="scr-istighfar" data-title="100× Istighfar">
+  <p class="kicker">Bab 5 · Challenge</p>
+  <h2 class="serif">100× ISTIGHFAR</h2>
+  <p class="muted">Beberapa menit untuk kembali.</p>
+  <div class="quote">
+    <p class="small">Rasulullah shallallahu 'alaihi wa sallam bersabda:</p>
+    <p style="margin-bottom:0">"Demi Allah, sesungguhnya aku benar-benar memohon ampun kepada Allah dan bertobat kepada-Nya lebih dari tujuh puluh kali dalam sehari."</p>
+    <span class="src">Riwayat: Abu Hurairah radhiyallaahu 'anhu · Shahih al-Bukhari no. 6307</span>
+  </div>
+  <p class="small faint">Angka 100 di sini adalah format challenge interaktif ebook, bukan klaim bahwa Nabi shallallahu 'alaihi wa sallam menetapkan challenge 100 kali untuk bacaan ini.</p>
+  <div class="card glass center">
+    <p class="kicker" style="margin-bottom:6px">Misi</p>
+    <p class="mission">Baca: <span style="font-family:var(--font-arabic);font-size:1.3em">أَسْتَغْفِرُ اللّٰهَ</span><br><span style="font-family:var(--font-body)">"Astaghfirullaah"</span> — 100×</p>
+    <p class="small muted">Santai aja. Centang setiap selesai 10×.</p>
+    <div class="checks" id="istighfarChecks"></div>
+    <button class="btn ghost sm" id="istighfarReset">↺ Ulangi dari awal</button>
+  </div>
+  <div id="istighfarDone"></div>
+</section>
+
+<!-- ============ BAB 6 DUA KALIMAT ============ -->
+<section class="screen sec" id="scr-dzikir" data-title="Ringan di Lisan">
+  <p class="kicker">Bab 6 · Challenge</p>
+  <h2 class="serif">RINGAN DI LISAN.</h2>
+  <div class="quote">
+    <p class="small">Rasulullah shallallahu 'alaihi wa sallam bersabda:</p>
+    <p style="margin-bottom:0">"Ada dua kalimat yang ringan di lisan, berat di timbangan, dan dicintai oleh Ar-Rahman: <em>Subhaanallaahi wa bihamdihi, Subhaanallaahil 'Azhiim.</em>"</p>
+    <span class="src">Riwayat: Abu Hurairah radhiyallaahu 'anhu · Shahih al-Bukhari no. 6682 · Shahih Muslim no. 2694</span>
+  </div>
+  <div class="card glass center">
+    <p class="kicker" style="margin-bottom:6px">Challenge</p>
+    <p class="mission"><span style="font-family:var(--font-arabic);font-size:1.2em">سُبْحَانَ اللّٰهِ وَبِحَمْدِهِ، سُبْحَانَ اللّٰهِ الْعَظِيمِ</span><br><span style="font-family:var(--font-body);font-size:.85em">"Subhaanallaahi wa bihamdihi, Subhaanallaahil 'Azhiim."</span> — 100×</p>
+    <p class="small faint">100× di sini adalah format permainan/interaksi. Jangan menyatakan bahwa hadis di atas menetapkan jumlah 100× untuk bacaan ini.</p>
+    <div class="checks" id="dzikirChecks"></div>
+    <button class="btn ghost sm" id="dzikirReset">↺ Ulangi dari awal</button>
+  </div>
+  <div id="dzikirDone"></div>
+</section>
+
+<!-- ============ BAB 7 BERBURU KEBAIKAN ============ -->
+<section class="screen sec" id="scr-misi" data-title="Berburu Kebaikan">
+  <p class="kicker">Bab 7 · Misi Random</p>
+  <h2 class="serif">Berburu Kebaikan</h2>
+  <p class="muted small">Satu misi kecil. Nggak perlu sempurna, yang penting dikerjakan.</p>
+  <div class="card glass center">
+    <p class="kicker" style="margin-bottom:6px">Misimu kali ini</p>
+    <p class="mission" id="missionText">Tekan tombol di bawah untuk mengambil misi.</p>
+    <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:18px">
+      <button class="btn" id="btnMission">🎲 AMBIL MISI</button>
+      <button class="btn ghost" id="btnMissionDone" disabled style="opacity:.5">SELESAI</button>
+    </div>
+  </div>
+  <p class="small faint center">Kita tidak mengklaim jumlah pahala tertentu. Semoga Allah menerima amalmu.</p>
+  <p class="small muted center">Misi selesai sejauh ini: <strong id="missionCount">0</strong></p>
+</section>
+
+<!-- ============ BAB 8 KEBAIKAN RAHASIA ============ -->
+<section class="screen sec" id="scr-rahasia" data-title="Kebaikan yang Nggak Ada yang Tahu">
+  <p class="kicker">Bab 8</p>
+  <h2 class="serif">Kebaikan yang nggak ada yang tahu.</h2>
+  <p class="muted">Lakukan satu kebaikan hari ini yang tidak perlu kamu ceritakan kepada siapa pun.</p>
+  <div class="grid" id="secretOpts">
+    <button class="doa-opt" data-s="doa">🤲 Doakan seseorang diam-diam.</button>
+    <button class="doa-opt" data-s="bantu">💗 Bantu orang tanpa memberitahunya.</button>
+    <button class="doa-opt" data-s="rapi">🧹 Rapikan sesuatu.</button>
+    <button class="doa-opt" data-s="quran">📖 Baca Al-Qur'an tanpa mengunggahnya.</button>
+    <button class="doa-opt" data-s="sedekah">💰 Sedekah tanpa perlu diumumkan.</button>
+  </div>
+  <div id="secretOut"></div>
+</section>
+<!-- ============ BAB 9 KARTU AYAT ============ -->
+<section class="screen sec" id="scr-kartu" data-title="Kartu Ayat">
+  <p class="kicker">Bab 9 · Kartu Random</p>
+  <h2 class="serif">🎴 Pilih satu angka secara random.</h2>
+  <p class="muted small">Sepuluh kartu tertutup. Satu di antaranya mungkin sedang kamu butuhkan.</p>
+  <div class="cards10" id="cards10"></div>
+  <div id="cardDetail"></div>
+</section>
+
+<!-- ============ BAB 10 RODA KEBAIKAN ============ -->
+<section class="screen sec" id="scr-roda" data-title="Roda Kebaikan">
+  <p class="kicker">Bab 10 · Spinner</p>
+  <h2 class="serif">🎡 Roda Kebaikan</h2>
+  <p class="muted small center">Bingung mau mulai dari mana? Biar roda yang pilihkan.</p>
+  <div class="wheelbox">
+    <div class="wheelptr" aria-hidden="true"></div>
+    <svg id="wheelSvg" viewBox="0 0 300 300" role="img" aria-label="Roda kebaikan dengan sepuluh pilihan aktivitas">
+      <g id="wheelG"></g>
+      <circle cx="150" cy="150" r="26" fill="var(--card2)" stroke="var(--border2)"/>
+      <circle cx="150" cy="150" r="6" fill="var(--accent)"/>
+    </svg>
+  </div>
+  <div class="center" style="margin-top:14px"><button class="btn" id="btnSpin">PUTAR</button></div>
+  <p class="wheelresult" id="wheelResult" aria-live="polite"></p>
+  <div class="center" id="wheelDoneWrap"></div>
+</section>
+
+<!-- ============ BAB 11 JOURNAL ============ -->
+<section class="screen sec" id="scr-jurnal" data-title="Journal">
+  <p class="kicker">Bab 11 · Journal</p>
+  <h2 class="serif">Keluarkan yang ada di kepala.</h2>
+  <p class="muted small">Nggak perlu rapi. Nggak perlu puitis. Tulis aja apa adanya — semua tersimpan otomatis dan hanya ada di perangkatmu.</p>
+  <div class="card glass">
+    <label class="jlabel" for="j1">Apa yang sebenarnya sedang kupikirkan?</label>
+    <textarea class="jta" id="j1" data-j="j1" placeholder="Tulis di sini..."></textarea><p class="savehint" id="h-j1"></p>
+    <label class="jlabel" for="j2">Apa yang membuatku lelah?</label>
+    <textarea class="jta" id="j2" data-j="j2" placeholder="Tulis di sini..."></textarea><p class="savehint" id="h-j2"></p>
+    <label class="jlabel" for="j3">Apa yang ingin kukatakan tetapi belum bisa?</label>
+    <textarea class="jta" id="j3" data-j="j3" placeholder="Tulis di sini..."></textarea><p class="savehint" id="h-j3"></p>
+    <label class="jlabel" for="j4">Apa yang sebenarnya kubutuhkan hari ini?</label>
+    <textarea class="jta" id="j4" data-j="j4" placeholder="Tulis di sini..."></textarea><p class="savehint" id="h-j4"></p>
+    <label class="jlabel" for="j5">Satu hal yang masih bisa kusyukuri:</label>
+    <textarea class="jta" id="j5" data-j="j5" placeholder="Sekecil apa pun..."></textarea><p class="savehint" id="h-j5"></p>
+    <label class="jlabel" for="j6">Ya Allah, hari ini aku ingin bercerita tentang...</label>
+    <textarea class="jta" id="j6" data-j="j6" placeholder="Ceritakan pelan-pelan..."></textarea><p class="savehint" id="h-j6"></p>
+    <div class="center" style="margin-top:10px"><button class="btn" id="btnJournalSave">SIMPAN</button></div>
+  </div>
+</section>
+
+<!-- ============ BAB 12 BICARA KEPADA ALLAH ============ -->
+<section class="screen sec" id="scr-doa" data-title="Bicara kepada Allah">
+  <p class="kicker">Bab 12</p>
+  <h2 class="serif">🤲 Bicara kepada Allah.</h2>
+  <p class="muted">Yang ingin kubawa dalam doa hari ini...</p>
+  <div class="grid" id="doaOpts">
+    <button class="doa-opt" data-doa="hati">💗 Hati</button>
+    <button class="doa-opt" data-doa="keluarga">👨‍👩‍👧 Keluarga</button>
+    <button class="doa-opt" data-doa="ilmu">📚 Ilmu</button>
+    <button class="doa-opt" data-doa="rezeki">💼 Rezeki</button>
+    <button class="doa-opt" data-doa="istiqamah">🕌 Istiqamah</button>
+    <button class="doa-opt" data-doa="ketenangan">🌙 Ketenangan</button>
+    <button class="doa-opt" data-doa="masadepan">🌱 Masa depan</button>
+    <button class="doa-opt" data-doa="tersayang">🤍 Orang yang kusayangi</button>
+  </div>
+  <div id="doaOut"></div>
+</section>
+
+<!-- ============ BAB 13 JEJAK ============ -->
+<section class="screen sec" id="scr-jejak" data-title="Jejak Kebaikanku">
+  <p class="kicker">Bab 13 · Konstelasi</p>
+  <h2 class="serif">🌱 Jejak Kebaikanku</h2>
+  <p class="muted small">Setiap aktivitas yang kamu selesaikan menambahkan satu bintang kecil di langitmu. Ini bukan poin pahala — hanya jejak bahwa kamu pernah berusaha.</p>
+  <div class="constel"><svg id="constelSvg" viewBox="0 0 360 220" aria-label="Konstelasi jejak kebaikan"></svg></div>
+  <p class="center" style="margin-top:14px"><strong id="starCount">0</strong> <span class="muted">jejak kebaikan</span></p>
+  <div class="quote">
+    <p style="margin-bottom:0" class="small">Rasulullah shallallahu 'alaihi wa sallam bersabda: "Sesungguhnya Allah tidak melihat rupa dan harta kalian, tetapi Dia melihat hati dan amal kalian."</p>
+    <span class="src">Riwayat: Abu Hurairah radhiyallaahu 'anhu · Shahih Muslim no. 2564</span>
+  </div>
+  <p class="muted center small">Kita tidak tahu berapa besar nilai amal yang Allah terima.<br>Tapi kita bisa terus berusaha menanam kebaikan.</p>
+</section>
+
+<!-- ============ BAB 14 MASIH KOSONG ============ -->
+<section class="screen sec" id="scr-kosong" data-title="Kalau Kamu Masih Kosong">
+  <p class="kicker">Bab 14</p>
+  <h2 class="serif">Kalau kamu masih kosong...</h2>
+  <div class="card glass">
+    <p>Kamu sudah mencoba beberapa hal di sini.</p>
+    <p class="muted">Tapi kalau setelahnya kamu masih merasa kosong, bukan berarti kamu gagal. Perasaan tidak selalu berubah hanya karena satu aktivitas.</p>
+    <p>Ambil waktumu.</p>
+    <p class="muted">Dan jika rasa hampa berlangsung lama, semakin berat, mengganggu aktivitas sehari-hari, atau membuatmu merasa tidak aman, jangan memikulnya sendirian.</p>
+    <p><strong>Ceritakan kepada orang yang kamu percaya dan pertimbangkan untuk mencari bantuan profesional.</strong></p>
+    <p class="muted small">Mencari bantuan bukan tanda lemah. Itu bentuk merawat diri.</p>
+  </div>
+</section>
+
+<!-- ============ BAB 15 PENUTUP ============ -->
+<section class="screen sec" id="scr-penutup" data-title="Penutup">
+  <p class="kicker">Bab 15 · Penutup</p>
+  <div class="card glass">
+    <h2 class="serif">Terima kasih sudah sampai di sini. 🤍</h2>
+    <p class="muted">Terima kasih sudah memberikan beberapa menit dari waktumu untuk berhenti, bernapas, berpikir, membaca, bermain, dan mungkin melakukan satu kebaikan kecil.</p>
+    <p class="muted">Semoga ebook sederhana ini bisa menjadi pengingat bahwa waktu luang tidak selalu harus dipenuhi dengan sesuatu yang besar.</p>
+    <p class="center serif" style="font-size:1.1rem;line-height:2">Kadang satu dzikir.<br>Satu ayat.<br>Satu doa.<br>Satu kebaikan kecil.</p>
+    <p class="muted">Sudah cukup untuk membuat beberapa menit terasa lebih berarti.</p>
+    <p class="muted">Kalau selama ebook ini ada kata-kata yang kurang tepat, penjelasan yang kurang sempurna, atau ada bagian yang membuatmu kurang nyaman, aku memohon maaf.</p>
+    <p class="muted">Semoga Allah memberikan manfaat dari setiap hal baik yang ada di dalamnya, menerima amal-amal kecil kita, melapangkan hati kita, dan membimbing kita kepada hal-hal yang Dia ridhai.</p>
+    <p class="serif" style="margin-top:18px">Jazaakumullaahu khairan katsiran.<br>Al-'afwu minkum.<br>Wallahu a'lam bish-shawab.</p>
+    <p style="margin-top:14px"><strong>Wassalamu'alaikum warahmatullahi wa barokaatuh.</strong></p>
+    <hr class="hr">
+    <p class="center" style="font-size:1.05rem">Aku gabut lagi.</p>
+    <div class="center"><button class="btn" id="btnMulaiLagi">🔄 MULAI LAGI</button></div>
+  </div>
+</section>
+
+<!-- ============ HALAMAN PENDUKUNG: GABUT ============ -->
+<section class="screen" id="scr-gabut" data-title="Gabut">
+  <p class="kicker">Untuk kamu yang gabut</p>
+  <h2 class="serif">Gabut itu sinyal, bukan kesalahan.</h2>
+  <p class="muted">Mungkin ini caramu berhenti sebentar dari hari yang berat. Dan itu nggak apa-apa. Tapi waktu luang terlalu berharga untuk dibiarkan berlalu tanpa disadari.</p>
+  <div class="quote">
+    <p class="small">Rasulullah shallallahu 'alaihi wa sallam bersabda:</p>
+    <p style="margin-bottom:0">"Ada dua kenikmatan yang banyak manusia tertipu padanya: kesehatan dan waktu luang."</p>
+    <span class="src">Riwayat: Ibnu Abbas radhiyallaahu 'anhuma · Shahih al-Bukhari no. 6412</span>
+  </div>
+  <p class="muted">Jadi, mau diisi apa beberapa menit ke depan?</p>
+  <div class="chiprow">
+    <button class="chip" data-goto="scr-durasi">⏱ Isi pelan-pelan</button>
+    <button class="chip" data-goto="scr-main">🎮 Aku ingin main</button>
+    <button class="chip" data-goto="scr-kartu">🎴 Buka kartu ayat</button>
+    <button class="chip" data-goto="scr-roda">🎡 Putar roda</button>
+  </div>
+</section>
+
+<!-- ============ HALAMAN PENDUKUNG: MAIN ============ -->
+<section class="screen" id="scr-main" data-title="Main">
+  <p class="kicker">Arena main</p>
+  <h2 class="serif">🎮 Main yang nggak bikin menyesal.</h2>
+  <p class="muted small">Bukan game biasa — semua di sini ninggalin jejak baik.</p>
+  <div class="grid c2">
+    <button class="moodcard" data-goto="scr-istighfar"><span class="em">🌱</span><span class="lb">100× ISTIGHFAR</span></button>
+    <button class="moodcard" data-goto="scr-dzikir"><span class="em">✨</span><span class="lb">RINGAN DI LISAN</span></button>
+    <button class="moodcard" data-goto="scr-misi"><span class="em">🎯</span><span class="lb">BERBURU KEBAIKAN</span></button>
+    <button class="moodcard" data-goto="scr-rahasia"><span class="em">🤫</span><span class="lb">KEBAIKAN RAHASIA</span></button>
+    <button class="moodcard" data-goto="scr-kartu"><span class="em">🎴</span><span class="lb">KARTU AYAT RANDOM</span></button>
+    <button class="moodcard" data-goto="scr-roda"><span class="em">🎡</span><span class="lb">RODA KEBAIKAN</span></button>
+  </div>
+  <p class="micro center">Waktu luangmu juga bisa jadi ruang untuk kebaikan.</p>
+</section>
+
+<!-- ============ HALAMAN PENDUKUNG: DEKAT ============ -->
+<section class="screen" id="scr-dekat" data-title="Mendekat kepada Allah">
+  <p class="kicker">Jalan pulang</p>
+  <h2 class="serif">🕌 Mendekat, pelan-pelan.</h2>
+  <p class="muted">Nggak harus langsung sempurna. Allah melihat hati dan amal — bukan seberapa hebat tampilan luarnya. Mulai dari yang paling ringan buatmu hari ini.</p>
+  <div class="grid c2">
+    <button class="moodcard" data-goto="scr-istighfar"><span class="em">🌱</span><span class="lb">ISTIGHFAR DULU</span></button>
+    <button class="moodcard" data-goto="scr-dzikir"><span class="em">✨</span><span class="lb">DZIKIR RINGAN</span></button>
+    <button class="moodcard" data-goto="scr-kartu"><span class="em">📖</span><span class="lb">BACA SATU AYAT</span></button>
+    <button class="moodcard" data-goto="scr-doa"><span class="em">🤲</span><span class="lb">BICARA KEPADA ALLAH</span></button>
+    <button class="moodcard" data-goto="scr-jurnal"><span class="em">📓</span><span class="lb">CURHAT LEWAT TULISAN</span></button>
+    <button class="moodcard" data-goto="scr-rahasia"><span class="em">🤍</span><span class="lb">KEBAIKAN DIAM-DIAM</span></button>
+  </div>
+</section>
+
+<!-- ============ PROGRESS ============ -->
+<section class="screen" id="scr-progress" data-title="Progres">
+  <p class="kicker">Progres</p>
+  <h2 class="serif">Perjalananmu sejauh ini</h2>
+  <div class="card glass">
+    <div class="ringbox">
+      <div class="ring" role="img" aria-label="Persentase progres">
+        <svg width="130" height="130" viewBox="0 0 130 130">
+          <circle cx="65" cy="65" r="56" fill="none" stroke="var(--card2)" stroke-width="10"/>
+          <circle id="ringFg" cx="65" cy="65" r="56" fill="none" stroke="url(#rg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="351.86" stroke-dashoffset="351.86"/>
+          <defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#7c5cf0"/><stop offset="100%" stop-color="#4f8df7"/>
+          </linearGradient></defs>
+        </svg>
+        <div class="pct" id="ringPct">0%</div>
+      </div>
+      <div>
+        <p class="serif" style="font-size:1.2rem;margin-bottom:4px" id="progBig">0 dari 18 bagian</p>
+        <p class="small muted">Progress tersimpan otomatis di perangkatmu — aman walau browser ditutup.</p>
+      </div>
+    </div>
+  </div>
+  <h3 class="serif" style="margin:22px 0 12px">Status bagian</h3>
+  <div id="sectionList"></div>
+  <h3 class="serif" style="margin:22px 0 12px">Data &amp; cadangan</h3>
+  <div class="card glass">
+    <p class="small muted">Semua data hanya tersimpan di perangkat ini. Tidak ada yang dikirim ke server.</p>
+    <div class="chiprow">
+      <button class="chip" id="btnBackup">⬇ BACKUP DATA</button>
+      <button class="chip" id="btnRestore">⬆ RESTORE DATA</button>
+      <button class="chip" id="btnReset" style="border-color:rgba(220,90,120,.5);color:#e88aa5">🗑 RESET PROGRESS</button>
+    </div>
+    <input type="file" id="restoreFile" accept="application/json,.json" hidden>
+  </div>
+</section>
+
+<!-- ============ TENTANG / COPYRIGHT ============ -->
+<section class="screen" id="scr-tentang" data-title="Tentang">
+  <p class="kicker">Informasi</p>
+  <h2 class="serif">Tentang ebook ini</h2>
+  <div class="card glass">
+    <p><strong>GABUT BERKELAS</strong><br><span class="muted small">Tempatmu mengisi waktu luang tanpa membiarkannya berlalu sia-sia.</span></p>
+    <p class="small muted">Penulis: Zahra RF<br>Dibuat: 30 September 2026<br>Kategori: Interactive Islamic Self-Reflection &amp; Activity Ebook<br>Untuk usia 18 tahun ke atas.</p>
+    <hr class="hr">
+    <p class="small muted">Ebook ini adalah teman refleksi digital — bukan pengganti teman, psikolog, dokter, ustaz/ustazah, atau bantuan profesional. Jika kamu sedang mengalami kondisi berat, jangan ragu mencari bantuan.</p>
+    <hr class="hr">
+    <p class="small muted">© 2026 Zahra RF. All rights reserved.<br><br>Ebook GABUT BERKELAS dilindungi hak cipta. Dilarang memperbanyak, menjual ulang, mendistribusikan, mengubah, atau mengklaim karya ini sebagai milik pribadi tanpa izin dari pemilik hak cipta.</p>
+  </div>
+</section>
+
+</main>
+
+<nav id="bottomnav" aria-label="Navigasi utama">
+  <div class="navin">
+    <button class="navbtn" data-goto="scr-home"><span>⌂</span>Beranda</button>
+    <button class="navbtn" data-goto="scr-cekrasa"><span>🎭</span>Cek Rasa</button>
+    <button class="navbtn" data-goto="scr-main"><span>🎮</span>Main</button>
+    <button class="navbtn" data-goto="scr-jurnal"><span>📓</span>Jurnal</button>
+    <button class="navbtn" data-goto="scr-progress"><span>🌙</span>Progres</button>
+  </div>
+</nav>
+
+<div class="modalback" id="modalBack" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <div class="modal glass">
+    <h3 id="modalTitle" class="serif">Konfirmasi</h3>
+    <p class="muted" id="modalBody">Yakin?</p>
+    <div class="modalrow" id="modalRow"></div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+"use strict";
+/* ================= DATA ================= */
+const SECTIONS=[
+  {id:'scr-cekrasa',t:'Cek Rasa'},{id:'scr-kenapa',t:'Kenapa Aku Merasa Begini?'},
+  {id:'scr-bilang',t:'Bilang Aja'},{id:'scr-durasi',t:'Isi Pelan-pelan'},
+  {id:'scr-istighfar',t:'100× Istighfar'},{id:'scr-dzikir',t:'Ringan di Lisan'},
+  {id:'scr-misi',t:'Berburu Kebaikan'},{id:'scr-rahasia',t:'Kebaikan Rahasia'},
+  {id:'scr-kartu',t:'Kartu Ayat'},{id:'scr-roda',t:'Roda Kebaikan'},
+  {id:'scr-jurnal',t:'Journal'},{id:'scr-doa',t:'Bicara kepada Allah'},
+  {id:'scr-jejak',t:'Jejak Kebaikanku'},{id:'scr-kosong',t:'Kalau Kamu Masih Kosong'},
+  {id:'scr-penutup',t:'Penutup'},{id:'scr-gabut',t:'Gabut'},{id:'scr-main',t:'Main'},{id:'scr-dekat',t:'Mendekat kepada Allah'}
+];
+
+const FEELINGS={
+  baik:{t:"Alhamdulillah. 🤍",v:"Senang dengar kamu sedang baik. Nikmat yang tenang seperti ini kadang lewat begitu saja tanpa disadari.",p:"Rasa baik bisa datang dari banyak hal — istirahat yang cukup, lingkungan yang mendukung, atau sekadar hari yang ringan. Nggak semua harus dijelaskan.",s:"Satu langkah praktis: tulis satu hal yang bikin hari ini terasa baik, supaya kamu ingat saat hari sedang berat.",links:[['scr-durasi','⏱ Isi waktu pelan-pelan'],['scr-kartu','🎴 Buka satu kartu ayat'],['scr-main','🎮 Main sesuatu yang bermakna']],ayat:8},
+  datar:{t:"Datar itu juga perasaan. 🤍",v:"Nggak harus selalu sedih atau bahagia. Kadang kita memang ada di tengah-tengah, dan itu wajar.",p:"Pada sebagian orang, rasa datar muncul saat rutinitas berulang atau stimulasi terlalu banyak — misalnya scrolling tanpa henti. Ini bukan diagnosis, hanya kemungkinan umum.",s:"Coba satu variasi kecil hari ini: ganti posisi duduk, keluar sebentar, atau kerjakan satu hal dengan tangan.",links:[['scr-kenapa','🔍 Kenapa aku merasa begini?'],['scr-durasi','⏱ Aktivitas 1–10 menit'],['scr-main','🎮 Coba satu challenge']],ayat:2},
+  gabut:{t:"Gabut itu sinyal, bukan kesalahan. 😌",v:"Mungkin ini caramu berhenti sebentar dari hari yang berat. Itu nggak apa-apa.",p:"Gabut sering muncul saat ada waktu kosong tapi belum ada arah. Bisa jadi tubuhmu butuh jeda, atau kepalamu butuh sesuatu yang lebih bermakna dari scrolling.",s:"Pilih satu aktivitas kecil dari ebook ini — satu aja, nggak usah banyak-banyak.",links:[['scr-gabut','😴 Halaman gabut'],['scr-durasi','⏱ Isi pelan-pelan'],['scr-roda','🎡 Biar roda yang pilih']],ayat:1},
+  sedih:{t:"Sini dulu. 🤍",v:"Kamu nggak harus buru-buru membuat dirimu baik-baik saja. Sedih itu manusiawi.",p:"Perasaan sedih bisa punya banyak penyebab dan tidak bisa didiagnosis lewat ebook. Yang bisa kita lakukan di sini adalah menemanimu beberapa menit.",s:"Satu langkah kecil: minum sesuatu yang hangat, duduk di tempat yang nyaman, dan tarik napas perlahan tiga kali.",links:[['scr-bilang','💬 Bilang aja'],['scr-kartu','🎴 Buka satu kartu'],['scr-doa','🤲 Bicara kepada Allah']],ayat:5},
+  marah:{t:"Tarik napas dulu. 🧊",v:"Perasaanmu valid. Tapi kamu nggak harus bertindak saat emosi sedang di puncak.",p:"Saat marah, tubuh berada dalam mode waspada dan keputusan cepat sering kita sesali. Memberi jeda bukan berarti memendam — ini cara merespons dengan lebih terarah.",s:"Letakkan HP sebentar, menjauh dari pemicunya kalau bisa, lalu kembali saat lebih tenang.",links:[['scr-bilang','💬 Ceritakan di Bilang Aja'],['scr-istighfar','🌱 Istighfar pelan-pelan'],['scr-durasi','⏱ Aktivitas 1 menit']],ayat:10},
+  cemas:{t:"Pelan-pelan. 🌙",v:"Cemas itu melelahkan, dan kamu nggak harus melawannya sendirian malam ini.",p:"Kecemasan bisa muncul dari banyak hal dan tidak bisa didiagnosis lewat ebook. Teknik sederhana seperti grounding kadang membantu menurunkan ketegangan sesaat.",s:"Coba sebutkan 5 benda yang kamu lihat, 4 hal yang bisa kamu sentuh, 3 suara yang kamu dengar.",links:[['scr-bilang','💬 Mulai 5–4–3 di Bilang Aja'],['scr-jurnal','📓 Tulis yang mengganggu'],['scr-doa','🤲 Titipkan dalam doa']],ayat:2},
+  teman:{t:"Kamu nggak sendirian di sini. 🥺🤍",v:"Ingin ditemani itu kebutuhan manusiawi, bukan kelemahan.",p:"Rasa sepi bisa muncul bahkan saat kita dikelilingi orang. Kadang yang kurang bukan kehadiran, tapi koneksi yang terasa nyata.",s:"Kalau memungkinkan, kabari satu orang yang kamu percaya hari ini — sekadar 'lagi ngapain?' pun cukup.",links:[['scr-bilang','💬 Bilang aja di sini'],['scr-jurnal','📓 Tulis dulu kalau belum siap cerita'],['scr-doa','🤲 Bicara kepada Allah']],ayat:5},
+  mikir:{t:"Kepalamu lagi penuh ya. 😵‍💫",v:"Kamu nggak harus menyelesaikan semua pikiran itu malam ini.",p:"Overthinking sering terasa produktif padahal menguras energi. Memisahkan 'yang bisa kukendalikan' dan 'yang belum' adalah cara sederhana untuk merapikan isi kepala.",s:"Tulis maksimal 3 hal yang bisa kamu kendalikan hari ini. Sisanya, parkir dulu.",links:[['scr-bilang','✍️ Latihan di Bilang Aja'],['scr-jurnal','📓 Kosongkan kepala di journal'],['scr-dzikir','✨ Alihkan ke dzikir ringan']],ayat:1},
+  hampa:{t:"Nggak ngerasa apa-apa juga boleh diakui. 🫥",v:"Kamu nggak harus memaksa ada rasa. Mengakui kehampaan sudah langkah yang jujur.",p:"Rasa hampa bisa muncul dari banyak hal — kelelahan, rutinitas, atau perubahan hidup — dan tidak bisa didiagnosis lewat ebook. Kalau berlangsung lama dan berat, bicara dengan profesional sangat dianjurkan.",s:"Mulai dari tubuh: sudah minum? sudah makan? sudah kena cahaya matahari hari ini?",links:[['scr-kenapa','🔍 Kemungkinan penyebabnya'],['scr-kosong','🌫 Kalau kamu masih kosong'],['scr-durasi','⏱ Satu aktivitas kecil']],ayat:9}
+};
+
+const CHAT={
+  sedih:{me:"Aku lagi sedih banget.",layers:[["VALIDASI","Sini dulu. 🤍\nKamu nggak harus buru-buru membuat dirimu baik-baik saja."],["PEMBACAAN SITUASI","Kalau kamu memang ingin menangis, cari tempat yang aman dan izinkan dirimu berhenti sebentar. Untuk beberapa menit ini, kita nggak perlu menyelesaikan semua masalah."],["PENJELASAN SINGKAT","Mengembalikan perhatian kepada tubuh dan lingkungan sekitar bisa menjadi salah satu cara sederhana untuk grounding."],["SOLUSI KECIL","Coba lakukan satu hal sederhana: minum sesuatu, duduk di tempat yang nyaman, dan jauhkan HP sebentar.\nPelan-pelan. Kamu nggak harus menyelesaikan semuanya malam ini."]],btn:"🍵 AKU MAU COBA",chal:{t:"Mini challenge · Jeda hangat",s:["Buat atau ambil satu minuman yang kamu suka.","Duduk di tempat paling nyaman yang bisa kamu temukan.","Tarik napas perlahan 3 kali. HP jauhkan dulu.","Kalau sudah, tandai selesai. Sesederhana itu."]}},
+  kosong:{me:"Aku nggak tahu kenapa, tapi rasanya kosong.",layers:[["VALIDASI","Aku paham. 🤍\nDan kamu nggak harus langsung menemukan penyebabnya."],["PEMBACAAN SITUASI","Kadang kita memang bisa merasa datar tanpa mampu menjelaskan apa yang sebenarnya terjadi. Untuk beberapa menit ini, jangan paksa dirimu mencari jawaban."],["PENJELASAN SINGKAT","Teknik grounding 5–4–3 membantu mengembalikan perhatian ke sekitar saat pikiran terasa melayang atau kosong."],["SOLUSI KECIL","Kita coba kembali ke sekitar dulu. Sebutkan: 5 benda yang kamu lihat, 4 hal yang bisa kamu sentuh, 3 suara yang kamu dengar.\nSetelah itu, lihat lagi bagaimana rasanya. Nggak perlu sempurna."]],btn:"🌱 MULAI 5–4–3",chal:{t:"Mini grounding 5–4–3",s:["Sebutkan (dalam hati atau tulis) 5 benda yang kamu lihat sekarang.","4 hal yang bisa kamu sentuh — lalu sentuh benar-benar.","3 suara yang kamu dengar, sekecil apa pun.","Tarik satu napas panjang. Lihat lagi bagaimana rasanya."]}},
+  gabut:{me:"Aku cuma gabut dan nggak tahu mau ngapain.",layers:[["VALIDASI","Wajar banget. Gabut itu bukan kegagalan — cuma waktu kosong yang belum dikasih arah."],["PEMBACAAN SITUASI","Mungkin kamu sudah scroll lama tapi tetap merasa nggak terisi. Itu sering terjadi, karena scrolling memberi stimulasi tanpa memberi rasa selesai."],["PENJELASAN SINGKAT","Otak lebih mudah merasa 'puas' dari aktivitas kecil yang punya awal dan akhir yang jelas."],["SOLUSI KECIL","Pilih satu aktivitas 1–5 menit dari ebook ini. Satu aja. Selesai satu, biasanya muncul tenaga untuk yang berikutnya."]],btn:"⏱ PILIH AKTIVITAS",goto:'scr-durasi'},
+  capek:{me:"Aku capek, tapi nggak tahu capek karena apa.",layers:[["VALIDASI","Capek yang nggak jelas sumbernya itu nyata, dan melelahkan justru karena nggak bisa ditunjuk."],["PEMBACAAN SITUASI","Bisa jadi ini capek fisik, capek sosial, capek karena terlalu banyak informasi, atau gabungan semuanya. Nggak harus diputuskan sekarang."],["PENJELASAN SINGKAT","Tubuh dan pikiran saling meminjam energi. Kurang tidur atau makan bisa terasa seperti masalah emosi."],["SOLUSI KECIL","Cek kebutuhan dasar dulu: minum, makan, istirahat. Kalau semua sudah dan masih capek, izinkan dirimu berhenti tanpa merasa bersalah."]],btn:"🛏️ CEK KEBUTUHANKU",goto:'scr-kenapa'},
+  nangis:{me:"Aku pengin nangis.",layers:[["VALIDASI","Nggak apa-apa. Menangis bukan kelemahan — itu cara tubuh melepaskan beban."],["PEMBACAAN SITUASI","Kalau memungkinkan, cari tempat yang aman dan privat. Kamu nggak harus menahannya demi terlihat kuat."],["PENJELASAN SINGKAT","Menangis adalah respons alami tubuh terhadap beban emosi. Setelahnya, sebagian orang merasa sedikit lebih ringan."],["SOLUSI KECIL","Izinkan dirimu beberapa menit. Siapkan air minum dan tisu di dekatmu. Setelah itu, basuh wajah atau berwudhu kalau kamu mau — sering terasa menenangkan."]],btn:"🤍 AKU MAU BERHENTI SEBENTAR",chal:{t:"Mini challenge · Ruang aman",s:["Cari tempat yang aman dan tenang.","Izinkan dirimu merasakan apa pun yang datang.","Minum air setelahnya, pelan-pelan.","Kalau siap, basuh wajahmu atau ambil wudhu."]}},
+  marah:{me:"Aku lagi marah banget.",layers:[["VALIDASI","Jangan balas chat siapa pun dulu. 😭\nBukan karena perasaanmu salah."],["PEMBACAAN SITUASI","Ketika emosi sedang sangat tinggi, memberi jeda sebelum bertindak dapat membantu kita merespons dengan lebih terarah."],["PENJELASAN SINGKAT","Saat marah, tubuh dalam mode waspada — keputusan yang diambil di titik ini sering kita sesali. Jeda beberapa menit bisa mengubah arah percakapan."],["SOLUSI KECIL","Letakkan HP sebentar. Tarik napas perlahan. Kalau memungkinkan, menjauhlah sebentar dari situasi yang membuatmu semakin terpancing.\nSetelah lebih tenang, baru kita lihat: 'Sebenarnya aku marah karena apa?'"]],btn:"🧊 AKU BUTUH JEDA",chal:{t:"Mini challenge · Jeda dingin",s:["Letakkan HP, jauhkan dari tangan 3 menit.","Tarik napas dalam 5 kali, hembuskan lebih panjang.","Kalau bisa, pindah ruangan atau cuci muka.","Baru kemudian tanya diri sendiri: aku marah karena apa, sebenarnya?"]},hadis:'marah'},
+  mikir:{me:"Aku terlalu banyak mikir.",layers:[["VALIDASI","Oke. Jangan tambah satu tugas lagi dengan memaksa dirimu 'berhenti overthinking'. 😭\nKita bikin lebih sederhana."],["PEMBACAAN SITUASI","Pisahkan dua hal: yang bisa aku kendalikan hari ini, dan yang belum bisa aku kendalikan."],["PENJELASAN SINGKAT","Overthinking sering datang dari mencoba mengendalikan hal yang memang di luar kendali. Memilahnya menurunkan beban mental."],["SOLUSI KECIL","Tulis maksimal 3 hal pada bagian pertama.\nKita nggak perlu menyelesaikan semuanya malam ini. Cukup bedakan mana yang bisa kamu lakukan dan mana yang belum berada dalam kendalimu."]],btn:"✍️ TULIS SEKARANG",goto:'scr-jurnal'},
+  sendiri:{me:"Aku ngerasa sendirian.",layers:[["VALIDASI","Berat ya rasanya. Kamu nggak aneh karena merasa begini — banyak orang mengalaminya, cuma jarang diucapkan."],["PEMBACAAN SITUASI","Kesepian bisa muncul bahkan saat kita ramai-ramai. Kadang yang hilang bukan orangnya, tapi rasa terhubungnya."],["PENJELASAN SINGKAT","Manusia punya kebutuhan dasar akan koneksi. Merindukan itu bukan lemah — itu tanda kamu manusia."],["SOLUSI KECIL","Kirim satu pesan kecil ke orang yang kamu percaya hari ini. Nggak perlu panjang. 'Lagi ngapain?' pun cukup untuk membuka pintu."]],btn:"💌 SATU PESAN KECIL",chal:{t:"Mini challenge · Satu pesan",s:["Pilih satu orang yang kamu percaya.","Kirim satu pesan sederhana — tanya kabar pun cukup.","Kalau belum ada yang bisa dihubungi, tulis di journal dulu. Itu juga langkah."]}},
+  males:{me:"Aku nggak pengin melakukan apa-apa.",layers:[["VALIDASI","Kalau tubuh dan pikiranmu sedang berat, kita nggak perlu mulai dari 'ayo produktif'."],["PEMBACAAN SITUASI","Mulai dari kebutuhan dasar. Kadang yang terasa seperti malas adalah tubuh yang kehabisan bahan bakar."],["PENJELASAN SINGKAT","Lapar, dehidrasi, dan kurang tidur semuanya bisa menyerupai kehilangan motivasi."],["SOLUSI KECIL","Sudah minum? Sudah makan? Sudah mandi? Sudah cukup istirahat?\nPilih satu saja."]],btn:"PILIH SATU",basic:true},
+  baik:{me:"Aku sebenarnya baik-baik aja, cuma hampa.",layers:[["VALIDASI","Baik-baik aja tapi hampa itu kombinasi yang aneh, tapi nyata. Dan kamu nggak harus membuktikan apa-apa."],["PEMBACAAN SITUASI","Kadang hampa muncul bukan karena ada masalah besar, tapi karena hari-hari berjalan tanpa sesuatu yang terasa berarti."],["PENJELASAN SINGKAT","Rasa 'berarti' sering datang dari hal kecil yang punya nilai — membantu seseorang, membaca sesuatu yang dalam, atau beribadah pelan-pelan."],["SOLUSI KECIL","Coba satu kebaikan kecil hari ini yang nggak perlu diketahui siapa pun. Lihat bagaimana rasanya setelah itu."]],btn:"🤫 COBA KEBAIKAN RAHASIA",goto:'scr-rahasia'}
+};
+
+const HADIS_MARAH={t:'Dari Abu Hurairah radhiyallaahu \'anhu:\nSeorang laki-laki berkata kepada Nabi shallallahu \'alaihi wa sallam, "Berilah aku nasihat." Beliau bersabda, "Jangan marah." Orang itu mengulanginya beberapa kali, dan beliau tetap bersabda, "Jangan marah."',s:'Shahih al-Bukhari no. 6116'};
+
+const DUR={
+  '1':["Baca istighfar 10×, pelan-pelan.","Minum segelas air sekarang.","Alihkan perhatian ke sekitar: sebutkan 5 benda yang kamu lihat.","Tulis satu kalimat tentang isi kepalamu saat ini."],
+  '3':["Baca beberapa ayat Al-Qur'an.","Rapikan satu tempat kecil di dekatmu.","Doakan seseorang diam-diam.","Journaling singkat: tiga hal yang kamu rasakan hari ini."],
+  '5':["Dzikir ringan: Subhaanallaahi wa bihamdihi.","Baca Al-Qur'an beberapa menit.","Berjalan sebentar, keluar dari ruangan.","Bantu satu pekerjaan orang rumah."],
+  '10':["Baca Al-Qur'an dengan terjemahnya.","Shalat sunnah jika memungkinkan.","Rapikan ruang atau meja belajarmu.","Tulis refleksi: apa yang kamu pelajari minggu ini?"]
+};
+
+const MISSIONS=["Doakan seseorang diam-diam.","Bantu orang rumah tanpa diminta.","Rapikan satu tempat yang bukan tanggung jawabmu.","Berikan sesuatu yang bermanfaat kepada orang lain.","Ucapkan salam.","Berikan senyum kepada seseorang.","Baca beberapa ayat Al-Qur'an.","Sedekahkan sesuatu jika kamu mampu.","Hubungi orang tua dan tanyakan kabarnya.","Maafkan satu kesalahan kecil yang tidak perlu diperpanjang."];
+
+const WHEEL=["📖 Baca Al-Qur'an","🤲 Berdoa","💗 Mendoakan seseorang","🧹 Merapikan sesuatu","👨‍👩‍👧 Membantu keluarga","💰 Sedekah jika mampu","🕌 Shalat sunnah jika memungkinkan","🌱 Istighfar","✨ Dzikir","🤍 Kebaikan rahasia"];
+
+const DOA={
+  hati:"Ya Allah, aku titipkan hatiku kepada-Mu. Kalau sedang berat, lapangkan. Kalau sedang bimbang, tenangkan. Jaga ia tetap lembut, jangan biarkan ia keras karena lelah. Aamiin.",
+  keluarga:"Ya Allah, jaga orang-orang yang kusebut keluarga. Sehatkan yang sakit, kuatkan yang lelah, dan pertemukan kami dalam kebaikan. Kalau ada salah yang pernah kuperbuat pada mereka, ampuni aku. Aamiin.",
+  ilmu:"Ya Allah, berkahilah proses belajarku. Berikan aku ilmu yang bermanfaat, pemahaman yang tenang, dan kerendahan hati untuk terus belajar. Aamiin.",
+  rezeki:"Ya Allah, cukupkan aku dengan rezeki yang halal dan baik. Lapangkan jalannya, berkahi hasilnya, dan jauhkan aku dari yang tidak membawa kebaikan. Aamiin.",
+  istiqamah:"Ya Allah, aku ingin bertahan di jalan-Mu, tapi aku tahu diriku mudah goyah. Tetapkan hatiku di atas agama-Mu, dan jangan biarkan aku berjalan sendirian. Aamiin.",
+  ketenangan:"Ya Allah, malam ini aku meminta ketenangan. Redakan gelisah yang tidak bisa kujelaskan, dan gantikan dengan rasa aman yang hanya bisa datang dari-Mu. Aamiin.",
+  masadepan:"Ya Allah, masa depanku ada di tangan-Mu. Tunjukkan langkah kecil berikutnya saja — aku tidak minta melihat semuanya sekaligus. Cukup ridha-Mu yang menuntun. Aamiin.",
+  tersayang:"Ya Allah, ada orang-orang yang kusayangi yang tidak bisa kujaga setiap saat. Jagalah mereka untukku. Sehatkan, lindungi, dan bahagiakan mereka dengan cara yang Engkau ridhai. Aamiin."
+};
+</script>
+<script>
+"use strict";
+/* ================= KARTU AYAT (teks Arab persis dari sumber prompt) ================= */
+const CARDS=[
+{n:1,surah:"Surah Al-Baqarah",ref:"2:152",ar:"فَٱذْكُرُونِىٓ أَذْكُرْكُمْ وَٱشْكُرُوا۟ لِى وَلَا تَكْفُرُونِ",tr:"Maka ingatlah kepada-Ku, Aku pun akan ingat kepadamu. Bersyukurlah kepada-Ku, dan janganlah kamu ingkar kepada-Ku.",rf:"Allah berjanji mengingat hamba yang mengingat-Nya. Rasa sendirian kadang menyempit ketika kita ingat bahwa ada Dia.",act:"Sebutkan satu nikmat hari ini, lalu ucapkan alhamdulillah."},
+{n:2,surah:"Surah Ar-Ra'd",ref:"13:28",ar:"الَّذِينَ آمَنُوا وَتَطْمَئِنُّ قُلُوبُهُمْ بِذِكْرِ اللَّهِ ۗ أَلَا بِذِكْرِ اللَّهِ تَطْمَئِنُّ الْقُلُوبُ",tr:"(Yaitu) orang-orang yang beriman dan hati mereka menjadi tenteram dengan mengingat Allah. Ingatlah, bahwa hanya dengan mengingat Allah hati akan selalu tenteram.",rf:"Ketenangan tidak selalu datang dari menyelesaikan semua masalah — kadang ia datang dari mengingat siapa yang mengatur semuanya.",act:"Duduk tenang 1 menit dan baca dzikir yang paling ringan buatmu."},
+{n:3,surah:"Surah Asy-Syarh",ref:"94:5",ar:"فَإِنَّ مَعَ الْعُسْرِ يُسْرًا",tr:"Maka sesungguhnya bersama kesulitan ada kemudahan.",rf:"Bukan sesudah — bersama. Kemudahan bisa jadi sudah ada, hanya belum terlihat dari tempatmu berdiri sekarang.",act:"Tulis satu hal kecil yang masih berjalan baik dalam hidupmu."},
+{n:4,surah:"Surah Asy-Syarh",ref:"94:6",ar:"إِنَّ مَعَ الْعُسْرِ يُسْرًا",tr:"Sesungguhnya bersama kesulitan ada kemudahan.",rf:"Allah mengulanginya dua kali. Mungkin karena kita sering butuh diyakinkan lebih dari sekali.",act:"Tarik napas panjang, dan ulangi ayat ini pelan-pelan."},
+{n:5,surah:"Surah Ad-Duha",ref:"93:3",ar:"مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ",tr:"Tuhanmu (Nabi Muhammad) tidak meninggalkan engkau dan tidak (pula) membencimu.",rf:"Ayat ini turun saat Nabi shallallahu 'alaihi wa sallam merasa ditinggalkan. Jawaban Allah: tidak, kamu tidak ditinggalkan. Begitu juga kamu.",act:"Ingat satu momen saat kamu merasa ditolong tanpa disangka-sangka."},
+{n:6,surah:"Surah Ad-Duha",ref:"93:5",ar:"وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ",tr:"Dan sungguh, kelak Tuhanmu pasti memberikan karunia-Nya kepadamu, sehingga engkau menjadi puas.",rf:"Ada janji kebaikan di depan, meski jalannya belum terlihat dari sini.",act:"Tulis satu harapan kecilmu, lalu titipkan dalam doa."},
+{n:7,surah:"Surah Ad-Duha",ref:"93:6",ar:"أَلَمْ يَجِدْكَ يَتِيمًا فَآوَىٰ",tr:"Bukankah Dia mendapatimu sebagai seorang yatim, lalu Dia melindungi(mu)?",rf:"Allah mengingatkan Nabi-Nya tentang masa sulit yang sudah dilewati. Hidupmu juga punya daftar panjang perlindungan yang mungkin luput kamu hitung.",act:"Sebutkan satu masa sulit yang ternyata berhasil kamu lewati."},
+{n:8,surah:"Surah Ibrahim",ref:"14:7",ar:"وَإِذْ تَأَذَّنَ رَبُّكُمْ لَئِنْ شَكَرْتُمْ لَأَزِيدَنَّكُمْ وَلَئِنْ كَفَرْتُمْ إِنَّ عَذَابِي لَشَدِيدٌ",tr:"(Ingatlah) ketika Tuhanmu memaklumkan, 'Sesungguhnya jika kamu bersyukur, niscaya Aku akan menambah (nikmat) kepadamu, tetapi jika kamu mengingkari (nikmat-Ku), sesungguhnya azab-Ku benar-benar sangat keras.'",rf:"Syukur bukan sekadar ucapan — ia cara memandang. Dan ia berjanji menambah, bukan mengurangi.",act:"Sebutkan tiga hal yang kamu syukuri hari ini, sekecil apa pun."},
+{n:9,surah:"Surah Az-Zumar",ref:"39:53",ar:"قُلْ يَا عِبَادِيَ الَّذِينَ أَسْرَفُوا عَلَىٰ أَنْفُسِهِمْ لَا تَقْنَطُوا مِنْ رَحْمَةِ اللَّهِ ۚ إِنَّ اللَّهَ يَغْفِرُ الذُّنُوبَ جَمِيعًا ۚ إِنَّهُ هُوَ الْغَفُورُ الرَّحِيمُ",tr:"Katakanlah (Nabi Muhammad), 'Wahai hamba-hamba-Ku yang melampaui batas terhadap diri mereka sendiri! Janganlah berputus asa dari rahmat Allah. Sesungguhnya Allah mengampuni dosa-dosa semuanya. Sungguh, Dialah Yang Maha Pengampun, Maha Penyayang.'",rf:"Tidak ada kesalahan yang terlalu besar untuk rahmat Allah. Pintu itu belum pernah tertutup untukmu.",act:"Baca istighfar sekali, dengan sungguh-sungguh."},
+{n:10,surah:"Surah Al-Isra'",ref:"17:53",ar:"وَقُلْ لِعِبَادِي يَقُولُوا الَّتِي هِيَ أَحْسَنُ ۚ إِنَّ الشَّيْطَانَ يَنْزَغُ بَيْنَهُمْ ۚ إِنَّ الشَّيْطَانَ كَانَ لِلْإِنْسَانِ عَدُوًّا مُبِينًا",tr:"Katakan kepada hamba-hamba-Ku supaya mereka mengucapkan perkataan yang lebih baik (dan benar). Sesungguhnya setan selalu menimbulkan perselisihan di antara mereka. Sesungguhnya setan adalah musuh yang nyata bagi manusia.",rf:"Saat emosi tinggi, kata-kata adalah hal pertama yang rusak. Ayat ini mengingatkan untuk memilih yang lebih baik — terutama saat sulit.",act:"Tunda satu balasan yang sedang emosional sampai kamu tenang."}
+];
+
+/* ================= STATE / STORAGE ================= */
+const KEY='gabutBerkelas_v1';
+const DEF={theme:'dark',current:null,visited:{},read:{},checks:{istighfar:[],dzikir:[]},cards:[],journal:{},feeling:null,chat:[],missions:0,stars:0,wheelSpins:0,doneActs:[],secret:null,doaSeen:[]};
+let S=JSON.parse(JSON.stringify(DEF));
+let db=null;
+function idbOpen(){return new Promise(res=>{try{const r=indexedDB.open('gabutBerkelas',1);
+  r.onupgradeneeded=()=>{r.result.createObjectStore('kv')};
+  r.onsuccess=()=>{db=r.result;res(true)};r.onerror=()=>res(false);}catch(e){res(false)}})}
+function idbSet(v){return new Promise(res=>{if(!db)return res(false);try{const tx=db.transaction('kv','readwrite');tx.objectStore('kv').put(v,KEY);tx.oncomplete=()=>res(true);tx.onerror=()=>res(false);}catch(e){res(false)}})}
+function idbGet(){return new Promise(res=>{if(!db)return res(null);try{const rq=db.transaction('kv','readonly').objectStore('kv').get(KEY);rq.onsuccess=()=>res(rq.result||null);rq.onerror=()=>res(null);}catch(e){res(null)}})}
+function save(){S._ts=Date.now();const v=JSON.stringify(S);try{localStorage.setItem(KEY,v)}catch(e){}idbSet(S).catch(()=>{})}
+async function load(){
+  await idbOpen();
+  let raw=await idbGet(),rawLs=null;
+  try{const l=localStorage.getItem(KEY);if(l)rawLs=JSON.parse(l)}catch(e){}
+  if(rawLs&&typeof rawLs==='object'&&rawLs.visited&&(!raw||(rawLs._ts||0)>(raw._ts||0)))raw=rawLs;
+  if(raw&&typeof raw==='object'&&raw.visited){S=Object.assign(JSON.parse(JSON.stringify(DEF)),raw)}
+}
+function resetState(){S=JSON.parse(JSON.stringify(DEF));save()}
+
+/* ================= UTIL ================= */
+const $=s=>document.querySelector(s),$$=s=>Array.from(document.querySelectorAll(s));
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function el(html){const t=document.createElement('template');t.innerHTML=html.trim();return t.content.firstElementChild}
+function toast(msg){const t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('show'),2400)}
+function scrollTop(){window.scrollTo({top:0,behavior:RM?'auto':'smooth'})}
+
+/* modal */
+let modalCb=null;
+function showModal(body,okLabel,cb){$('#modalBody').textContent=body;const row=$('#modalRow');row.innerHTML='';
+  const b1=el('<button class="btn ghost sm">BATAL</button>');const b2=el('<button class="btn sm">'+(okLabel||'HAPUS')+'</button>');
+  b1.onclick=closeModal;b2.onclick=()=>{closeModal();if(cb)cb()};row.append(b1,b2);
+  $('#modalBack').classList.add('show');modalCb=cb;b2.focus()}
+function closeModal(){$('#modalBack').classList.remove('show');modalCb=null}
+$('#modalBack').addEventListener('click',e=>{if(e.target.id==='modalBack')closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+
+/* ================= NAVIGATION ================= */
+function go(id){
+  const scr=document.getElementById(id);if(!scr)return;
+  $$('.screen').forEach(s=>s.classList.remove('on'));
+  scr.classList.add('on');
+  document.body.classList.toggle('entered',id!=='scr-cover')
+  S.visited[id]=true;
+  if(SECTIONS.some(x=>x.id===id))S.current=id;
+  save();scrollTop();updateNav(id);updateProgress();
+}
+function updateNav(id){$$('.navbtn').forEach(b=>{const g=b.dataset.goto;
+  const map={'scr-main':['scr-main','scr-istighfar','scr-dzikir','scr-misi','scr-rahasia','scr-kartu','scr-roda'],'scr-jurnal':['scr-jurnal'],'scr-cekrasa':['scr-cekrasa','scr-kenapa','scr-bilang'],'scr-home':['scr-home'],'scr-progress':['scr-progress']};
+  const list=map[g]||[g];b.classList.toggle('act',list.includes(id))})}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-goto]');if(b){e.preventDefault();
+  const chip=b.dataset.chip;go(b.dataset.goto);
+  if(chip){setTimeout(()=>{const c=document.querySelector('#chatChips [data-c="'+chip+'"]');if(c)c.click()},RM?50:400)}}});
+
+/* ================= PROGRESS ================= */
+function readCount(){return SECTIONS.filter(x=>S.read[x.id]).length}
+function updateProgress(){
+  const done=readCount(),tot=SECTIONS.length,pct=Math.round(done/tot*100);
+  $('#homePct').textContent=pct;$('#homeFill').style.width=pct+'%';
+  $('#homeCount').textContent=done+' / '+tot;
+  $('#ringPct').textContent=pct+'%';
+  const C=351.86;$('#ringFg').style.strokeDashoffset=C*(1-pct/100);
+  $('#progBig').textContent=done+' dari '+tot+' bagian selesai.';
+  const list=$('#sectionList');list.innerHTML='';
+  SECTIONS.forEach(x=>{
+    const done=!!S.read[x.id],vis=!!S.visited[x.id];
+    const r=el('<button class="statusrow"><span class="dot '+(done?'done':vis?'part':'')+'">'+(done?'✓':vis?'◐':'○')+'</span><span>'+x.t+'</span><span class="faint small" style="margin-left:auto">'+(done?'Selesai':vis?'Sedang dijelajahi':'Belum dibuka')+'</span></button>');
+    r.onclick=()=>go(x.id);list.appendChild(r)});
+}
+/* auto-read: tandai selesai saat pengguna mencapai akhir section */
+const readObs=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.dataset.endof;
+  if(id&&S.visited[id]&&!S.read[id]){S.read[id]=true;save();updateProgress()}}})},{threshold:.9});
+function markEnds(){$$('.sec').forEach(sec=>{const m=document.createElement('div');m.dataset.endof=sec.id;m.style.height='2px';sec.appendChild(m);readObs.observe(m)})}
+
+/* ================= STARS BG ================= */
+function makeStars(){if(RM)return;const box=$('#stars');for(let i=0;i<70;i++){const s=document.createElement('div');s.className='star';
+  const z=Math.random();s.style.cssText='left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;width:'+(z*1.8+.6)+'px;height:'+(z*1.8+.6)+'px;--tw:'+(3+Math.random()*5)+'s;animation-delay:-'+Math.random()*5+'s';box.appendChild(s)}}
+function shooting(){if(RM)return;const box=$('#stars');const s=document.createElement('div');s.className='shoot';
+  s.style.left=(40+Math.random()*55)+'%';s.style.top=(Math.random()*40)+'%';box.appendChild(s);
+  requestAnimationFrame(()=>s.classList.add('go'));setTimeout(()=>s.remove(),1400);
+  setTimeout(shooting,9000+Math.random()*14000)}
+
+/* ================= THEME ================= */
+function applyTheme(){document.documentElement.dataset.theme=S.theme;$('#themeBtn').textContent=S.theme==='dark'?'☾':'☼'}
+$('#themeBtn').onclick=()=>{S.theme=S.theme==='dark'?'light':'dark';save();applyTheme()};
+
+/* ================= CEK RASA ================= */
+function renderFeeling(k){const f=FEELINGS[k];if(!f)return;const out=$('#feelingOut');out.innerHTML='';
+  const card=el('<div class="card glass" style="animation:fadeUp .5s var(--ease) both"></div>');
+  let links=f.links.map(l=>'<button class="chip" data-goto="'+l[0]+'">'+l[1]+'</button>').join('');
+  card.innerHTML='<h3 class="serif">'+f.t+'</h3><p class="muted">'+f.v+'</p><p class="small muted">'+f.p+'</p><p class="small"><strong>Satu langkah praktis:</strong> '+f.s+'</p><div class="chiprow" style="margin-top:12px">'+links+'</div>';
+  const ay=CARDS[f.ayat-1];
+  card.appendChild(el('<div class="quote"><span class="ayahnum">'+ay.surah+' — '+ay.ref+'</span><span class="ar">'+ay.ar+'</span><p class="small" style="margin:0">"'+ay.tr+'"</p></div>'));
+  out.appendChild(card);card.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})}
+$$('#feelingChips .chip').forEach(c=>c.onclick=()=>{$$('#feelingChips .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');S.feeling=c.dataset.f;save();renderFeeling(c.dataset.f)});
+
+/* ================= CHAT ================= */
+function addBubble(txt,me){const b=el('<div class="bubble '+(me?'me':'bot')+'"></div>');b.textContent=txt;$('#chatlog').appendChild(b);b.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});return b}
+function addBotLayered(layers){const b=el('<div class="bubble bot"></div>');
+  layers.forEach((L,i)=>{setTimeout(()=>{const t=document.createElement('div');
+    t.innerHTML='<span class="lyr">'+L[0]+'</span>';const p=document.createElement('div');p.textContent=L[1];t.appendChild(p);b.appendChild(t);
+    b.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})},RM?0:i*650)});
+  $('#chatlog').appendChild(b);return b}
+function chatRespond(k){const d=CHAT[k];if(!d)return;
+  $$('#chatChips .chip').forEach(x=>x.classList.remove('sel'));
+  const chip=document.querySelector('#chatChips [data-c="'+k+'"]');if(chip)chip.classList.add('sel');
+  addBubble(d.me,true);
+  const typing=el('<div class="typing" aria-hidden="true"><i></i><i></i><i></i></div>');$('#chatlog').appendChild(typing);
+  typing.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'});
+  setTimeout(()=>{typing.remove();addBotLayered(d.layers);
+    const delay=RM?100:d.layers.length*650+300;
+    setTimeout(()=>{
+      if(d.hadis==='marah'){const q=el('<div class="quote"><p class="small" style="margin-bottom:6px">Setelah lebih tenang, ada nasihat dari Nabi shallallahu \'alaihi wa sallam:</p><p class="small" style="margin:0;white-space:pre-line"></p><span class="src"></span></div>');
+        q.querySelector('p.small[style*="margin:0"]').textContent=HADIS_MARAH.t;q.querySelector('.src').textContent='Sumber: '+HADIS_MARAH.s;$('#chatlog').appendChild(q)}
+      if(d.basic){const wrap=el('<div class="chiprow" style="margin-top:4px"></div>');
+        [['💧 MINUM','minum'],['🍚 MAKAN','makan'],['🚿 MANDI','mandi'],['🛏️ ISTIRAHAT','istirahat']].forEach(o=>{const c=el('<button class="chip">'+o[0]+'</button>');
+          c.onclick=()=>{addBubble(o[0],true);setTimeout(()=>{addBotLayered([["CHALLENGE KECIL","Oke, pilihan yang bagus. Lakukan sekarang — "+o[1]+" dulu, pelan-pelan. Nggak usah mikirin yang lain sampai ini selesai."]]);addChallengeUI({t:'Mini challenge · '+o[0],s:['Lakukan sekarang: '+o[1]+'.','Nggak perlu buru-buru, nggak perlu sempurna.','Setelah selesai, kembali ke sini dan tandai.']})},RM?0:500)};
+          wrap.appendChild(c)});$('#chatlog').appendChild(wrap);wrap.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})}
+      else{const b=el('<button class="btn sm" style="margin-top:4px;align-self:flex-start">'+d.btn+'</button>');
+        b.onclick=()=>{b.disabled=true;if(d.chal)addChallengeUI(d.chal);else if(d.goto)go(d.goto)};
+        $('#chatlog').appendChild(b);b.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})}
+    },delay)},RM?100:900)}
+function addChallengeUI(ch){const box=el('<div class="card glass" style="width:100%;margin-top:10px"></div>');
+  box.innerHTML='<p class="kicker" style="margin-bottom:6px">'+ch.t+'</p>';
+  const list=el('<div></div>');const checks=[];
+  ch.s.forEach((st,i)=>{const r=el('<button class="statusrow"><span class="dot">○</span><span class="small">'+st+'</span></button>');
+    r.onclick=()=>{const d=r.querySelector('.dot');const on=d.textContent!=='✓';d.textContent=on?'✓':'○';d.classList.toggle('done',on);checks[i]=on;
+      if(checks.every(Boolean)){doneMsg(box);addStars(1)}};list.appendChild(r);checks.push(false)});
+  box.appendChild(list);$('#chatlog').appendChild(box);box.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})}
+function doneMsg(parent){const m=el('<p class="small" style="margin-top:10px;color:var(--accent2)">Selesai. 🤍 Pelan-pelan aja — beberapa menit pun berarti.</p>');parent.appendChild(m)}
+$$('#chatChips .chip').forEach(c=>c.onclick=()=>chatRespond(c.dataset.c));
+
+/* ================= DURASI ================= */
+let curDur=null;
+function renderDur(d){curDur=d;const list=$('#durList');list.innerHTML='';
+  const g=el('<div class="grid c2"></div>');
+  DUR[d].forEach(a=>{const c=el('<button class="moodcard" style="min-height:auto;animation:none"><span class="lb" style="font-weight:500">'+a+'</span></button>');
+    c.onclick=()=>{c.style.borderColor='var(--accent)';c.style.opacity=.6;addStars(1);toast('Satu aktivitas ditandai selesai ✓')};g.appendChild(c)});
+  list.appendChild(g)}
+$$('#durChips .chip').forEach(c=>c.onclick=()=>{$$('#durChips .chip').forEach(x=>x.classList.remove('sel'));c.classList.add('sel');renderDur(c.dataset.d)});
+$('#btnDurRandom').onclick=()=>{const ds=Object.keys(DUR);const d=ds[Math.floor(Math.random()*ds.length)];
+  const a=DUR[d][Math.floor(Math.random()*DUR[d].length)];
+  const out=$('#durPick');out.innerHTML='';
+  out.appendChild(el('<div class="card glass"><p class="kicker">Dipilihkan untukmu · '+d+' menit</p><p class="mission">'+a+'</p><p class="micro">Kalau kurang sreg, putar lagi. Nggak apa-apa.</p></div>'))};
+
+/* ================= CHALLENGE CHECKS (istighfar & dzikir) ================= */
+function buildChecks(key,boxId,doneId,doneMsgHtml){
+  const box=$(boxId);box.innerHTML='';
+  for(let i=1;i<=10;i++){const done=S.checks[key].includes(i);
+    const c=el('<button class="chk'+(done?' done':'')+'" aria-pressed="'+done+'">'+(i*10)+'×<small>'+(done?'✓ selesai':'tahap '+i)+'</small></button>');
+    c.onclick=()=>{const idx=S.checks[key].indexOf(i);
+      if(idx>-1){S.checks[key].splice(idx,1)}else{S.checks[key].push(i);if(S.checks[key].length===10){addStars(3)}}
+      save();buildChecks(key,boxId,doneId,doneMsgHtml)};
+    box.appendChild(c)}
+  const done=$(doneId);done.innerHTML='';
+  if(S.checks[key].length===10){done.appendChild(el('<div class="card glass center" style="border-color:var(--accent)"><p class="serif" style="font-size:1.1rem;white-space:pre-line">'+doneMsgHtml+'</p></div>'))}
+}
+$('#istighfarReset').onclick=()=>{showModal('Ulangi challenge dari awal? Checklist 100× Istighfar akan dikosongkan.','ULANGI',()=>{S.checks.istighfar=[];save();buildChecks('istighfar','#istighfarChecks','#istighfarDone',DONE_ISTIGHFAR)})};
+$('#dzikirReset').onclick=()=>{showModal('Ulangi challenge dari awal? Checklist Ringan di Lisan akan dikosongkan.','ULANGI',()=>{S.checks.dzikir=[];save();buildChecks('dzikir','#dzikirChecks','#dzikirDone',DONE_DZIKIR)})};
+const DONE_ISTIGHFAR="Alhamdulillah. 🤍\nBeberapa menitmu tadi tidak berlalu begitu saja.\nSemoga Allah menerima amalmu dan menjadikannya kebaikan.";
+const DONE_DZIKIR="Mission complete. ✨\nSemoga beberapa menit yang sederhana ini menjadi bagian dari kebaikanmu.";
+</script>
+<script>
+"use strict";
+/* ================= MISI ================= */
+let curMission=null;
+$('#btnMission').onclick=()=>{curMission=MISSIONS[Math.floor(Math.random()*MISSIONS.length)];
+  $('#missionText').textContent=curMission;
+  const d=$('#btnMissionDone');d.disabled=false;d.style.opacity=1};
+$('#btnMissionDone').onclick=()=>{if(!curMission)return;S.missions++;save();$('#missionCount').textContent=S.missions;
+  addStars(1);toast('Semoga Allah menerima amalmu. 🤍');curMission=null;
+  $('#missionText').textContent='Ambil misi baru kalau kamu siap.';
+  const d=$('#btnMissionDone');d.disabled=true;d.style.opacity=.5};
+
+/* ================= KEBAIKAN RAHASIA ================= */
+$$('#secretOpts .doa-opt').forEach(b=>b.onclick=()=>{
+  $$('#secretOpts .doa-opt').forEach(x=>x.style.borderColor='');b.style.borderColor='var(--accent)';
+  S.secret=b.dataset.s;save();const out=$('#secretOut');out.innerHTML='';
+  const card=el('<div class="card glass center" style="margin-top:16px"></div>');
+  card.innerHTML='<p class="mission">'+b.textContent.trim()+'</p><p class="small muted">Kerjakan diam-diam, lalu tandai selesai di sini.</p>';
+  const btn=el('<button class="btn" style="margin-top:12px">SELESAI</button>');
+  btn.onclick=()=>{btn.disabled=true;btn.style.opacity=.5;addStars(2);
+    card.appendChild(el('<p class="serif" style="margin-top:16px;font-size:1.05rem">Tidak semua kebaikan perlu menjadi konten.<br>Ada kebaikan yang cukup diketahui olehmu dan Allah. 🤍</p>'))};
+  card.appendChild(btn);out.appendChild(card)});
+
+/* ================= KARTU AYAT ================= */
+function buildCards(){const wrap=$('#cards10');wrap.innerHTML='';
+  CARDS.forEach(c=>{const f=el('<button class="flip" aria-label="Kartu nomor '+String(c.n).padStart(2,'0')+'"><div class="flip-inner"><div class="face front glass"><small>KARTU</small>'+String(c.n).padStart(2,'0')+'</div><div class="face back"><b>'+c.surah+'</b><span>'+c.ref+'</span><span class="micro">Lihat ayat lengkap di bawah ↓</span></div></div></button>');
+    f.onclick=()=>{const opening=!f.classList.contains('open');f.classList.toggle('open');
+      if(opening&&!S.cards.includes(c.n)){S.cards.push(c.n);save();addStars(1)}if(opening)showCard(c)};
+    wrap.appendChild(f)})}
+function showCard(c){const d=$('#cardDetail');d.innerHTML='';
+  const card=el('<div class="card glass" style="margin-top:18px;animation:fadeUp .5s var(--ease) both"></div>');
+  card.innerHTML='<span class="ayahnum">'+c.surah+' — '+c.ref+'</span><span class="ar" lang="ar" dir="rtl">'+c.ar+'</span><p class="small">"'+c.tr+'"</p><hr class="hr"><p class="small muted"><strong>Refleksi:</strong> '+c.rf+'</p><p class="small"><strong>Satu tindakan kecil:</strong> '+c.act+'</p>';
+  d.appendChild(card);card.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})}
+
+/* ================= RODA ================= */
+const WH_COLORS=['#7c5cf0','#4f8df7','#9a6cf2','#5aa0f0','#8b5cf6','#6a8ff5','#a06be8','#4f7df0','#8f6cf5','#5f95f7'];
+function buildWheel(){const g=$('#wheelG');g.innerHTML='';const cx=150,cy=150,r=140,n=WHEEL.length;
+  for(let i=0;i<n;i++){const a0=(i/n)*Math.PI*2-Math.PI/2,a1=((i+1)/n)*Math.PI*2-Math.PI/2;
+    const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const p=document.createElementNS('http://www.w3.org/2000/svg','path');
+    p.setAttribute('d','M'+cx+','+cy+' L'+x0.toFixed(1)+','+y0.toFixed(1)+' A'+r+','+r+' 0 0 1 '+x1.toFixed(1)+','+y1.toFixed(1)+' Z');
+    p.setAttribute('fill',WH_COLORS[i]);p.setAttribute('stroke','rgba(255,255,255,.35)');p.setAttribute('stroke-width','1');
+    p.setAttribute('opacity',.92);g.appendChild(p);
+    const mid=(a0+a1)/2,tx=cx+ (r*0.62)*Math.cos(mid),ty=cy+(r*0.62)*Math.sin(mid);
+    const t=document.createElementNS('http://www.w3.org/2000/svg','text');
+    t.setAttribute('x',tx);t.setAttribute('y',ty);t.setAttribute('text-anchor','middle');t.setAttribute('dominant-baseline','middle');
+    t.setAttribute('fill','#fff');t.setAttribute('font-size','15');
+    t.setAttribute('transform','rotate('+(mid*180/Math.PI+90)+' '+tx+' '+ty+')');
+    t.textContent=WHEEL[i].split(' ')[0];g.appendChild(t)}}
+let spinning=false,rotation=0;
+$('#btnSpin').onclick=()=>{if(spinning)return;spinning=true;$('#wheelResult').textContent='Berputar...';
+  $('#wheelDoneWrap').innerHTML='';
+  const n=WHEEL.length,idx=Math.floor(Math.random()*n);
+  const segDeg=360/n;
+  const target=360*6 + (360 - (idx*segDeg + segDeg/2));
+  rotation=rotation - (rotation%360) + target + Math.random()*(segDeg*0.5)-segDeg*0.25;
+  const g=$('#wheelG');g.style.transform='rotate('+rotation+'deg)';
+  const fin=()=>{spinning=false;S.wheelSpins++;save();
+    $('#wheelResult').textContent='Hasilnya: '+WHEEL[idx];
+    const w=$('#wheelDoneWrap');
+    const b=el('<button class="btn ghost sm" style="margin-top:6px">TANDAI SELESAI</button>');
+    b.onclick=()=>{addStars(1);b.disabled=true;b.textContent='✓ Tercatat';toast('Semoga Allah menerima amalmu. 🤍')};
+    w.appendChild(b)};
+  if(RM){g.style.transition='none';setTimeout(fin,300)}else{g.addEventListener('transitionend',fin,{once:true})}};
+
+/* ================= JOURNAL ================= */
+function loadJournal(){$$('textarea.jta').forEach(t=>{t.value=S.journal[t.dataset.j]||''})}
+let jTimers={};
+$$('textarea.jta').forEach(t=>{t.addEventListener('input',()=>{const k=t.dataset.j;
+  clearTimeout(jTimers[k]);const h=$('#h-'+k);h.textContent='menyimpan...';
+  jTimers[k]=setTimeout(()=>{S.journal[k]=t.value;save();h.textContent='tersimpan otomatis ✓'},700)})});
+$('#btnJournalSave').onclick=()=>{$$('textarea.jta').forEach(t=>{S.journal[t.dataset.j]=t.value;const h=$('#h-'+t.dataset.j);if(h)h.textContent='tersimpan ✓'});save();toast('Journal tersimpan di perangkatmu. 📓')};
+
+/* ================= DOA ================= */
+$$('#doaOpts .doa-opt').forEach(b=>b.onclick=()=>{
+  $$('#doaOpts .doa-opt').forEach(x=>x.style.borderColor='');b.style.borderColor='var(--accent)';
+  if(!S.doaSeen.includes(b.dataset.doa)){S.doaSeen.push(b.dataset.doa);save()}
+  const out=$('#doaOut');out.innerHTML='';
+  const card=el('<div class="card glass" style="margin-top:16px;animation:fadeUp .5s var(--ease) both"></div>');
+  card.innerHTML='<p class="badge">Doa pribadi yang bisa kamu panjatkan</p><p class="serif" style="font-size:1.05rem;line-height:1.9">'+DOA[b.dataset.doa]+'</p>';
+  out.appendChild(card);card.scrollIntoView({behavior:RM?'auto':'smooth',block:'nearest'})});
+
+/* ================= JEJAK / CONSTELLATION ================= */
+function addStars(n){S.stars=(S.stars||0)+n;save();renderConstel();updateProgress()}
+function renderConstel(){const svg=$('#constelSvg');svg.innerHTML='';const count=Math.min(S.stars||0,60);
+  const pts=[];for(let i=0;i<count;i++){const x=20+((i*53)%320),y=20+((i*97)%180);pts.push([x,y])}
+  for(let i=1;i<pts.length;i++){if(i%3===0)continue;const l=document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',pts[i-1][0]);l.setAttribute('y1',pts[i-1][1]);l.setAttribute('x2',pts[i][0]);l.setAttribute('y2',pts[i][1]);
+    l.setAttribute('stroke','rgba(180,160,255,.28)');l.setAttribute('stroke-width','1');svg.appendChild(l)}
+  pts.forEach(p=>{const c=document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx',p[0]);c.setAttribute('cy',p[1]);c.setAttribute('r',2.6);c.setAttribute('class','cstar');svg.appendChild(c)});
+  $('#starCount').textContent=S.stars||0}
+
+/* ================= BACKUP / RESTORE / RESET ================= */
+$('#btnBackup').onclick=()=>{const blob=new Blob([JSON.stringify(Object.assign({_gb:'gabut-berkelas',v:1,exported:new Date().toISOString()},S),null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='gabut-berkelas-backup.json';a.click();
+  setTimeout(()=>URL.revokeObjectURL(a.href),2000);toast('Backup diunduh sebagai file JSON. ⬇')};
+$('#btnRestore').onclick=()=>$('#restoreFile').click();
+$('#restoreFile').addEventListener('change',e=>{const f=e.target.files[0];if(!f)return;
+  const rd=new FileReader();rd.onload=()=>{try{const d=JSON.parse(rd.result);
+    if(!d||typeof d!=='object'||d._gb!=='gabut-berkelas'||typeof d.visited!=='object'||typeof d.read!=='object'){toast('Format file tidak valid. Restore dibatalkan.');return}
+    ['visited','read','checks','journal','chat','doneActs','doaSeen'].forEach(k=>{if(typeof d[k]!=='object')d[k]=DEF[k]});
+    ['missions','stars','wheelSpins'].forEach(k=>{if(typeof d[k]!=='number')d[k]=0});
+    if(!Array.isArray(d.cards))d.cards=[];
+    S=Object.assign(JSON.parse(JSON.stringify(DEF)),d);save();
+    hydrate();toast('Data berhasil dipulihkan. ✓');go('scr-progress');
+  }catch(err){toast('File tidak bisa dibaca. Pastikan file JSON hasil backup.')}};
+  rd.readAsText(f);e.target.value=''});
+$('#btnReset').onclick=()=>showModal('Yakin ingin menghapus seluruh progres di perangkat ini?','HAPUS',()=>{
+  resetState();hydrate();toast('Semua progres telah dihapus.');go('scr-cover')});
+
+/* ================= HYDRATE ================= */
+function hydrate(){
+  applyTheme();buildCards();buildWheel();loadJournal();renderConstel();
+  buildChecks('istighfar','#istighfarChecks','#istighfarDone',DONE_ISTIGHFAR);
+  buildChecks('dzikir','#dzikirChecks','#dzikirDone',DONE_DZIKIR);
+  $('#missionCount').textContent=S.missions||0;
+  if(S.feeling){const c=document.querySelector('#feelingChips [data-f="'+S.feeling+'"]');if(c){c.classList.add('sel');renderFeeling(S.feeling)}}
+  updateProgress();
+}
+
+/* ================= BOOT ================= */
+$('#btnMasuk').onclick=()=>go('scr-pembuka');
+$('#btnSiap').onclick=()=>go('scr-prolog');
+$('#btnPrologNext').onclick=()=>go('scr-home');
+$('#btnMulaiLagi').onclick=()=>{go('scr-home');toast('Selamat datang kembali. 🤍')};
+(async function(){
+  await load();hydrate();markEnds();makeStars();setTimeout(shooting,5000);
+  if(S.current&&S.current!=='scr-cover'&&document.getElementById(S.current)){go(S.current)}
+})();
+</script>
+</body>
+</html>
